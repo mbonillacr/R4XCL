@@ -1,0 +1,31 @@
+****************************************
+*                                      *
+* LEAME ANTES DE INICIAR LA INSTALACION* 
+*                                      *  
+****************************************
+
+1. Antes de iniciar, debera tener instalado BERT (descargar de https://bert-toolkit.com/downloading)
+
+2. Una vez instalado BERT, en su carpeta de DOCUMENTOS encontrara un nuevo folder con nombre BERT2, 
+   en ese folder encontrara uno de nombre FUNCTIONS. Ahi debera colocar TODOS LOS ARCHIVOS *.R facilitados
+
+
+    NO OLVIDE QUE PUEDE CAMBIAR EL DIRECTORIO DE TRABAJO DE BERT
+    DIRECTAMENTE EN LA CONSOLA: PREFERENCES
+    
+    "functionsDirectory": "D:\\BERT2\\functions"
+    
+    EN ESA MISMA CARPETA DEBE INCLUIRSE LA LIBRERIA DE FUNCIONES: [CARPETA HELP]
+
+3. El archivo R4XCL BETA V1.2.xlam debera ponerlo en C:\Users\[USUARIO]\AppData\Roaming\Microsoft\AddIns
+   o bien en un lugar seguro como: 
+
+    COLOQUE EL ADDIN EN UN ESPACIO QUE XCL TENGA HABILITADO PARA ELLO
+    OPTIONS/ADDINS/TRUST CENTER/TRUST CENTER SETTINGS/TRUSTED LOCATIONS
+    C:\Program Files\Microsoft Office\Root\Office16\Library\
+
+4. Vaya a EXCEL / OPCIONES / COMPLEMENTOS / IR /  seleccione R4XCL BETA 1.0
+
+5. Su Addin ha sido instalado, corrobore iendo a COMPLEMENTOS en el MENU DE EXCEL
+
+6. Revisar la configuración regional de la maquina a fin de que los decimales sean separados por PUNTO y no por COMA
