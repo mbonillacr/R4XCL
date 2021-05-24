@@ -1,24 +1,10 @@
-R4XCL is an addin for Microsoft Excel which makes possible the use of some algoritms included in R without the needing of programing 
-skills. It all happens in Excel environment. All data and algoritms selected are passed to R using BERT framework (you will need to 
-download it before from https://bert-toolkit.com/download-bert). 
+Para poder hacer uso de la función incluída en el adjunto en ANEXO 2 (y otras tantas más) favor seguir los siguientes pasos
 
-1- Install Bert
+* Descargar BERT esto puede realizarlo desde [AQUI](https://bert-toolkit.com)
 
-2 - After installing BERT you will need to include all the files contained in LIBRERIA in the specified directory by BERT 
+* Instale BERT en su máquina (solo disponible para PC)
 
-(usually found in C:~/documents/BERT2/FUNCTIONS).
+* Una vez instalado descargue el archivo LIBRERÍAS dispuesto en el ANEXO 1. Una vez descargado vacíe el contenido en la carpeta FUNCTIONS que BERT creó en el proceso de instalación (la encontrará en DOCUMENTOS/BERT2/FUNCTIONS ) deposite ahí los archivos .R suministrados.
 
-3 - After that you must include [R4XCL.xlam] in the Microsoft Addins folder (which you usually will find in 
-
-C:\Users\[USER.NAME]\AppData\Roaming\Microsoft\AddIns 
-
-or in a secure place like: 
-
-C:\Program Files\Microsoft Office\Root\Office16\Library\
-
-4 - Having put R4XL in the place, you just need to go to EXCEL / FILE / OPTIONS / ADDINS / GO /BROWSE and search for the file in the place 
-you choose in step 3, select the file and after that you just need to check the box. 
-
-5 - In Excel go to ADDINS, there you will find a new menu called R4XCL.
-
-Have fun!
+* Habiendo realizado los pasos anteriores en cualquier celda de Excel ejecutar
+ ``` =R.UT_InstalaPaquetes()```
