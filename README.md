@@ -4,7 +4,9 @@ Para poder hacer uso de la función incluída en el adjunto en ANEXO 2 (y otras 
 
 * Instale BERT en su máquina (solo disponible para PC)
 
-* Una vez instalado descargue el archivo LIBRERÍAS dispuesto en el ANEXO 1. Una vez descargado vacíe el contenido en la carpeta FUNCTIONS que BERT creó en el proceso de instalación (la encontrará en DOCUMENTOS/BERT2/FUNCTIONS ) deposite ahí los archivos .R suministrados.
+* Una vez instalado descargue todos los archivos dispuestos en R4XCL.zip en la carpeta FUNCTIONS que BERT creó en el proceso de instalación (la encontrará en DOCUMENTOS/BERT2/FUNCTIONS )
 
-* Habiendo realizado los pasos anteriores en cualquier celda de Excel ejecutar
+* Habiendo realizado los pasos anteriores, asegurese de tener acceso a internet. En cualquier celda de Excel ejecute
  ``` =R.UT_InstalaPaquetes()```
+ y espere a que finalice dicho proceso (sólo será necesario hacerlo la 1er vez)
+
