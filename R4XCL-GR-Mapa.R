@@ -1,9 +1,39 @@
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# MAPA ISO3
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 MP_MapaISO03 <- function(NombrePaises, Valores, Titulo )
   {
 
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(NombrePaises)) {
+    stop("Error: NombrePaises es un parámetro obligatorio.")
+  }
+  if (missing(Valores)) {
+    stop("Error: Valores es un parámetro obligatorio.")
+  }
+  if (missing(Titulo)) {
+    stop("Error: Titulo es un parámetro obligatorio.")
+  }
+  if (!is.character(NombrePaises)) {
+    stop("Error: NombrePaises debe ser un vector de caracteres.")
+  }
+  if (!is.numeric(Valores)) {
+    stop("Error: Valores debe ser un vector numérico.")
+  }
+  if (length(NombrePaises)!= length(Valores)) {
+    stop("Error: NombrePaises y Valores deben tener la misma longitud.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
   library(rworldmap)
   
-  BERT.graphics.device(cell=T);
+  BERT.graphics.device(cell = T)
   
   DF <- data.frame(
                    Pais = NombrePaises,
@@ -27,6 +57,13 @@ MP_MapaISO03 <- function(NombrePaises, Valores, Titulo )
                  oceanCol="black")
   
   dev.off();
-  T;
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
   
-  }
+  return(invisible(TRUE))
+  
+}
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# FIN DE PROCEDIMIENTO
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++

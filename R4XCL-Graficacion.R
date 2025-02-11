@@ -9,27 +9,44 @@ GR_Graficos.D <- function(
                          )
   {
 
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(SetDatosX)) {
+    stop("Error: SetDatosX es un parámetro obligatorio.")
+  }
+  if (!is.data.frame(SetDatosX)) {
+    stop("Error: SetDatosX debe ser un data frame.")
+  }
+  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
+    stop("Error: SetDatosY debe ser un data frame.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
   library(svDialogs)
 
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
   #-------------------------->>>  
 
-  FX = R4XCL_INT_FUNCION(
+  FX <- R4XCL_INT_FUNCION(
                         SetDatosX,
                         SetDatosY
                         )
 
-  DT = R4XCL_INT_DATOS(
+  DT <- R4XCL_INT_DATOS(
                       SetDatosY=SetDatosY,                   
                       SetDatosX=SetDatosX,
                       Categorica=Categorica
                       )
   
-  Procedimientos=R4XCL_INT_PROCEDIMIENTOS()
+  Procedimientos<-R4XCL_INT_PROCEDIMIENTOS()
   
   
-  especificacion = eval(parse(text=FX))
+  especificacion <- eval(parse(text=FX))
   
   #-------------------------->>> 
   # [2] PROCEDIMIENTO ANALITICO
@@ -40,7 +57,7 @@ GR_Graficos.D <- function(
   # [3] PREPARACION DE RESULTADOS
   #-------------------------->>> 
   
-  A = dlg_list(Procedimientos$GRAFICA)
+  A <- dlg_list(Procedimientos$GRAFICA)
   TipoOutput=A$res
   
   if (TipoOutput == Procedimientos$GRAFICA[1]){
@@ -49,22 +66,21 @@ GR_Graficos.D <- function(
 
       cols <- rainbow(3, s = 0.5)
       
-       boxplot(especificacion, 
+       boxplot(
+               especificacion, 
                data = DT,
-      #boxplot(x ~ z , data = DF2,
-              #at = c(1:3, 4:6), 
-              col = cols)#,
-              #names = c("", "A", "", "", "B", ""), xaxs = FALSE)
-              
-      legend(
-             "topleft", 
-             fill = cols, 
-             legend = c(1,2,3), 
-             horiz = T
-             )
+               col = cols
+               )
+        legend(
+               "topleft", 
+               fill = cols, 
+               legend = c(1,2,3), 
+               horiz = T
+               )
       
       dev.off();
-    OutPut  = "Ver Gr�fico"   
+      
+    OutPut  = "Ver Gráfico"   
     
   } else if (TipoOutput == Procedimientos$GRAFICA[2]){
     
@@ -72,31 +88,31 @@ GR_Graficos.D <- function(
     
   } else if (TipoOutput == Procedimientos$GRAFICA[3]){   
     
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
     
   } else if (TipoOutput == Procedimientos$GRAFICA[4]){
     
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
     
   } else if (TipoOutput == Procedimientos$GRAFICA[5]){
     
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
     
   } else if (TipoOutput == Procedimientos$GRAFICA[6]){
     
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
     
   } else if (TipoOutput == Procedimientos$GRAFICA[7]){    
     
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
   
   } else if (TipoOutput == Procedimientos$GRAFICA[8]){ 
     
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
     
   } else if (TipoOutput == Procedimientos$GRAFICA[9]){ 
 
-    OutPut  = "EN PROCESO"   
+    OutPut  <- "EN PROCESO"   
 
   } 
   #_________________________________________________________________   

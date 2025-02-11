@@ -6,6 +6,25 @@ GR_GraficoInteractivo = function(TipoOutput=1)
 {
 
   #-------------------------->>>   
+  # VALIDACIONES
+  #-------------------------->>>  
+  if (missing(SetDatosIndice)) {
+    stop("Error: SetDatosIndice es un parámetro obligatorio.")
+  }
+  if (missing(SetDatosValor)) {
+    stop("Error: SetDatosValor es un parámetro obligatorio.")
+  }
+  if (!is.data.frame(SetDatosIndice)) {
+    stop("Error: SetDatosIndice debe ser un data frame.")
+  }
+  if (!is.data.frame(SetDatosValor)) {
+    stop("Error: SetDatosValor debe ser un data frame.")
+  }
+  if (nrow(SetDatosIndice)!= nrow(SetDatosValor)) {
+    stop("Error: SetDatosIndice y SetDatosValor deben tener el mismo número de filas.")
+  }
+  
+  #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
   #-------------------------->>>  
   
@@ -42,19 +61,25 @@ GR_GraficoInteractivo = function(TipoOutput=1)
     pListFiles=list.files(pPath)
     
     fig <- plot_ly(
-                  type="treemap",
-                  labels=c("Eve", "Cain", "Seth", "Enos", "Noam", "Abel", "Awan", "Enoch", "Azura"),
-                  parents=c("", "Eve", "Eve", "Seth", "Seth", "Eve", "Eve", "Awan", "Eve")
-                  )
+      type = "treemap",
+      labels = SetDatosIndice[, 1],
+      parents = SetDatosValor[, 1]
+    )
     
-    path_file=paste0(pPath,"/EjemploPlotly.html", pArchivoElegido)
+    # fig <- plot_ly(
+    #               type="treemap",
+    #               labels=c("Eve", "Cain", "Seth", "Enos", "Noam", "Abel", "Awan", "Enoch", "Azura"),
+    #               parents=c("", "Eve", "Eve", "Seth", "Seth", "Eve", "Eve", "Awan", "Eve")
+    #               )
+    
+    path_file=paste0(pPath,"/EjemploPlotly.html")
     path_file=normalizePath(path_file)
     htmlwidgets::saveWidget(fig,path_file )
     
     library(fs)
     file_show(path_file)
     
-    OutPut = "Ver gr�fico"
+    OutPut = "Ver gr?fico"
   }
   #-------------------------->>> 
   # [4] RESULTADO FINAL
@@ -66,10 +91,10 @@ GR_GraficoInteractivo = function(TipoOutput=1)
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
 # FIN DE PROCEDIMIENTO                                 +
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Detalle = "Crea TREEMAP"
+Detalle = "Crea un gráfico de mapa de árbol interactivo."
 attr(GR_GraficoInteractivo, "description" ) = 
   list( 
-    Detalle,
-    SetDatosIndice = "Conjunto de de datos de grupos",
-    SetDatosValor  = "Contiene los valores"
-  )
+      Detalle,
+      SetDatosIndice = "Conjunto de datos que contiene las etiquetas para el mapa de árbol.",
+      SetDatosValor  = "Conjunto de datos que contiene los valores para el mapa de árbol."
+      )

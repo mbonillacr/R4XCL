@@ -1,5 +1,16 @@
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+# IMPORTAR ARCHIVO EXTERNO GRANDE                      +
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 UT_ArchivoExternoLRG = function()
 {
+  
+  #-------------------------->>>   
+  # VALIDACIONES
+  #-------------------------->>>  
+  # En este caso, no hay validaciones previas necesarias, 
+  # ya que la función se encarga de solicitar la ruta del archivo al usuario.
+  
   require(svDialogs)
   require(tcltk)
   require(dplyr)
@@ -13,7 +24,7 @@ UT_ArchivoExternoLRG = function()
   # [2] PROCEDIMIENTO ANALITICO
   #-------------------------->>> 
   
-  ListaFunciones=c("Resumen de Datos", "Selecci�n Muestral", "POR LLENAR CON ALGUN METODO")
+  ListaFunciones=c("Resumen de Datos", "Selección Muestral", "POR LLENAR CON ALGUN METODO")
   TipoDialogo = c("ok", "okcancel", "yesno", "yesnocancel")
   MSG1="Seleccione el archivo a cargar"
   
@@ -51,7 +62,7 @@ UT_ArchivoExternoLRG = function()
     A=eval(parse(text=paste0(proceso,"DatosX",")")))
     OutPut=capture.output(A)
     
-  } else if(seleccionado == "Selecci�n Muestral") {
+  } else if(seleccionado == "Selección Muestral") {
     
     a=dlg_input(message = "Cantidad de Elementos a Seleccionar")
     N=a$res
@@ -65,11 +76,9 @@ UT_ArchivoExternoLRG = function()
     FX='hist'
     proceso=paste0("lapply(DatosX[2:p], FUN=",FX,")")
     
-    #proceso="hist("
-    #A=eval(parse(text=paste0(proceso,"as.numeric(SetDatosX[,c(1:p)])",")")))
     
     A=eval(parse(text=proceso))
-    OutPut="Ver Gr�fico"
+    OutPut="Ver Gráfico"
     
   }
   
@@ -83,9 +92,9 @@ UT_ArchivoExternoLRG = function()
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
 # FIN DE PROCEDIMIENTO                                 +
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Detalle = "Estima un modelo de regresi�n para variable binaria (Y={0,1})"
+Detalle = "Importa un archivo externo grande y realiza un análisis exploratorio."
 attr(UT_ArchivoExternoLRG, "description" ) = 
   list( 
     Detalle,
-    TipoOutput= "0:Crea Dummies, 1:Normalizar, 2:, 3:, 4:"
+    #TipoOutput= "0:INCLUIR DESCRIPCION, 1:INCLUIR DESCRIPCION, 2:, 3:, 4:"
   )

@@ -11,6 +11,16 @@ TM_TextMining <- function(RUTA_FL=NULL,
                           )
 {
   
+  #-------------------------->>>   
+  # VALIDACIONES
+  #-------------------------->>>  
+  if (!is.character(RUTA_FL) ||!file.exists(RUTA_FL)) {
+    stop("Error: RUTA_FL debe ser una ruta v√°lida a un archivo de texto.")
+  }
+  if (!is.null(RUTA_SW) && (!is.character(RUTA_SW) ||!file.exists(RUTA_SW))) {
+    stop("Error: RUTA_SW debe ser una ruta v√°lida a un archivo de texto.")
+  }
+  
   #http://www.sthda.com/english/wiki/text-mining-and-word-cloud-fundamentals-in-r-5-simple-steps-you-should-know
   
   library(tm)
@@ -32,7 +42,7 @@ TM_TextMining <- function(RUTA_FL=NULL,
 
   source(file.path(ARCHIVO))
   
-  #ListaFunciones = c("Resumen de Datos", "SelecciÛn Muestral", "POR LLENAR CON ALGUN METODO")
+  #ListaFunciones = c("Resumen de Datos", "Selecci?n Muestral", "POR LLENAR CON ALGUN METODO")
   #TipoDialogo    = c("ok", "okcancel", "yesno", "yesnocancel")
   IDIOMA         = c("spanish","english")
   
@@ -59,9 +69,10 @@ TM_TextMining <- function(RUTA_FL=NULL,
   
   # Remove your own stop word specify your stopwords as a character vector
   
-  StopWords     = readLines(RUTA_SW)
-  
-  docs <- tm_map(docs, removeWords, StopWords)
+  if (!is.null(RUTA_SW)) {
+    StopWords = readLines(RUTA_SW)
+    docs <- tm_map(docs, removeWords, StopWords)
+  }
   
   # Remove punctuations
   docs <- tm_map(docs, removePunctuation)
@@ -84,7 +95,7 @@ TM_TextMining <- function(RUTA_FL=NULL,
   
   if (TipoOutput == 0){
 
-    OutPut = "Ver Gr·fico"
+    OutPut = "Ver Gr√°fico"
     wordcloud(
               words = d$word, 
               freq = d$freq, 
@@ -101,14 +112,14 @@ TM_TextMining <- function(RUTA_FL=NULL,
     
   }else if(TipoOutput == 2){   
   
-    OutPut = "Ver Gr·fico"
+    OutPut = "Ver Gr√°fico"
     
     barplot(
             d[1:10,]$freq, 
             las = 2, 
             names.arg = d[1:10,]$word,
             col  = "red", 
-            main = "Palabras m·s Frecuentes",
+            main = "Palabras m?s Frecuentes",
             ylab = "Frecuencia"
            )
     
@@ -118,7 +129,7 @@ TM_TextMining <- function(RUTA_FL=NULL,
     
   }else{   
   
-    OutPut = "Revisar par·metros disponibles" 
+    OutPut = "Revisar par√°metros disponibles" 
     
   }  
   
@@ -141,8 +152,8 @@ attr(TM_TextMining, "description") =
         Detalle,
         RUTA = "Ruta: Archivo de texto a procesar",
         RUTA_SW= "Ruta: Palabras por despreciar",
-        MAXWORDS="Cantidad m·xima de palabras a procesar", 
+        MAXWORDS="Cantidad m√°xima de palabras a procesar", 
         QPALABRASRESUMEN="Cantidad de palabras a mostrar como resultado",
-        IDIOMA="1: EspaÒol, 2:InglÈs",
-        TipoOutput="0:WordClud, 1:Frecuencia (tab.), 2:Frecuencia (gr·f.), 3: TÈrminos Frecuentes"
+        IDIOMA="1: Espa√±ol, 2:Ingl√©s",
+        TipoOutput="0:WordClud, 1:Frecuencia (tab.), 2:Frecuencia (gr?f.), 3: T√©rminos Frecuentes"
        )

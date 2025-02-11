@@ -1,13 +1,46 @@
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# FUNCIONES INTERNAS
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#------------------------------------>>>
+# LISTAR DATASETS
+#------------------------------------>>>
+
 R4XCL_INT_LISTA_DATASETS = function(psPkg) 
 {
 
-  eval(parse(text= paste0("suppressPackageStartupMessages(library(",psPkg,"))") ) )
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (!is.character(psPkg)) {
+    stop("Error: psPkg debe ser un nombre de paquete vÃ¡lido.")
+  }
+  if (!requireNamespace(psPkg, quietly = TRUE)) {
+    stop("Error: El paquete ", psPkg, " no estÃ¡ instalado.")
+  }
   
-  v = ls(paste0("package:",psPkg))
-  dfDS = data.frame(dataset = character(0))
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
   
-  nV=length(v)
+  # Cargar el paquete sin mensajes de inicio
+  suppressPackageStartupMessages(library(psPkg, character.only = TRUE))
+  
+  # Obtener la lista de objetos en el paquete
+  v <- ls(paste0("package:", psPkg))
+  
+  # Crear un data frame vacÃ­o para almacenar los nombres de los datasets
+  dfDS <- data.frame(dataset = character(0))
+  
+  # Obtener la cantidad de objetos en el paquete
+  nV <- length(v)
 
+  #-------------------------->>>
+  # PROCEDIMIENTO ANALITICO
+  #-------------------------->>>
+  
+  # Iterar sobre la lista de objetos en el paquete
+  
   for(i in 1:nV ) 
     {
       x = eval(parse(text= paste0("class(",psPkg,"::",v[i],")") ) )
@@ -18,26 +51,58 @@ R4XCL_INT_LISTA_DATASETS = function(psPkg)
         }
     }
   
-  dfDS [,1]
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  # Devolver la primera columna del data frame dfDS, que contiene los nombres de los datasets
+  return(dfDS[, 1])
 
   }
 
-R4XCL_INT_CREA_CARPETA = function()
+#------------------------------------>>>
+# CREAR CARPETA
+#------------------------------------>>>
+
+R4XCL_INT_CREA_CARPETA <- function()
 {
   
-  RutaGuardar     = choose.dir(default = "", caption = "Seleccione el Destino")
-  NombreCarpeta   = "\\RESULTADOS R4XCL"
-  Ruta_Local_0    = paste0(RutaGuardar, NombreCarpeta)
-  output_dir      = file.path(Ruta_Local_0)
+  RutaGuardar     <- choose.dir(default = "", caption = "Seleccione el Destino")
+  NombreCarpeta   <- "\\RESULTADOS R4XCL"
+  Ruta_Local_0    <- paste0(RutaGuardar, NombreCarpeta)
+  output_dir      <- file.path(Ruta_Local_0)
+  
+  #-------------------------->>>
+  # CREAR CARPETA
+  #-------------------------->>>
+  
+  # Si la carpeta no existe, crearla
   
   if (!dir.exists(output_dir)){dir.create(output_dir)}
   
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  # Devolver la ruta completa de la carpeta
+  
   return(output_dir)
   
-  }
+}
+
+#------------------------------------>>>
+# OBTENER FECHA
+#------------------------------------>>>
 
 R4XCL_INT_FECHA = function()
 {
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
+  # Obtener la fecha actual
+  
   fecha=Sys.Date()
   a=format(as.Date(fecha, format="%d/%m/%Y"),"%Y")
   b=format(as.Date(fecha, format="%d/%m/%Y"),"%m")
@@ -47,10 +112,22 @@ R4XCL_INT_FECHA = function()
   return(d)
 }
 
+#------------------------------------>>>
+# PREGUNTAR SI/NO
+#------------------------------------>>>
+
 R4XCL_INT_PREGUNTA_SN = function(vctr.preguntas)
 {
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(vctr.preguntas)) {
+    stop("Error: vctr.preguntas es un parÃ¡metro obligatorio.")
+  }
+  
   prm.mostrar=c("SI", "NO")
   
+  # Crear un diÃ¡logo para preguntar al usuario si desea realizar la acciÃ³n especificada en vctr.preguntas
   FX = dlg_list(
                 prm.mostrar, 
                 multiple = FALSE,
@@ -58,9 +135,19 @@ R4XCL_INT_PREGUNTA_SN = function(vctr.preguntas)
                 title = paste0("Desea ",vctr.preguntas, " sus datos?")
                )
   
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  # Devolver TRUE si el usuario selecciona "SI", FALSE en caso contrario
+  
   FX$res=="SI"
   
 }
+
+#------------------------------------>>>
+# PREPARAR DATOS
+#------------------------------------>>>
 
 R4XCL_INT_DATOS = function(
                           SetDatosY  = NULL,                           
@@ -71,9 +158,26 @@ R4XCL_INT_DATOS = function(
                           Ponderadores = NULL
                           )
 {
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(SetDatosX)) {
+    stop("Error: SetDatosX es un parÃ¡metro obligatorio.")
+  }
+  if (!is.data.frame(SetDatosX)) {
+    stop("Error: SetDatosX debe ser un data frame.")
+  }
+  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
+    stop("Error: SetDatosY debe ser un data frame.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS
+  #-------------------------->>>
   
   if (Categorica==1){
         
+    # Si Categorica es igual a 1, llamar a la funciÃ³n R4XCL_INT_DATOS_TEXTO
         Datos = R4XCL_INT_DATOS_TEXTO(
                                       SetDatosX  = SetDatosX,
                                       SetDatosY  = SetDatosY,
@@ -82,6 +186,8 @@ R4XCL_INT_DATOS = function(
                                       Ponderadores = Ponderadores
                                       )
   }else{
+    
+    # Si Categorica es diferente de 1, llamar a la funciÃ³n R4XCL_INT_DATOS_NUMERO
         Datos = R4XCL_INT_DATOS_NUMERO(
                                        SetDatosX = SetDatosX,
                                        SetDatosY = SetDatosY,
@@ -89,8 +195,21 @@ R4XCL_INT_DATOS = function(
                                        Filtro    = Filtro,
                                        Ponderadores = Ponderadores
                                        )
-        }
+  }
+  
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  # Devolver el data frame Datos
+  
+  return(Datos)
+  
 }
+
+#------------------------------------>>>
+# PREPARAR DATOS NUMÃ‰RICOS
+#------------------------------------>>>
 
 R4XCL_INT_DATOS_NUMERO = function(
                                  SetDatosX,
@@ -101,14 +220,14 @@ R4XCL_INT_DATOS_NUMERO = function(
                                  )
 {
   
-  C=NULL
-  DatosX_N=NULL
+  C <- NULL
+  DatosX_N <- NULL
   
-  pX = ncol(SetDatosX)
-  pY = ncol(SetDatosY)
-  nX = nrow(SetDatosX)-1
-  nY = nX
-  pDimY=dim(SetDatosY)
+  pX <- ncol(SetDatosX)
+  pY <- ncol(SetDatosY)
+  nX <- nrow(SetDatosX) - 1
+  nY <- nX
+  pDimY <- dim(SetDatosY)
 
 # Si el usuario requiere filtrar datos, proceder a conformar vector filtro  
 
@@ -171,24 +290,34 @@ R4XCL_INT_DATOS_NUMERO = function(
       colnames(Datos)[2:(pX+1)] = nombresX[1:pX]
       colnames(Datos)[(pX+2)]   = "PESOS"
       }
-
-# Valida si el usuario solicitó estalar los datos  
+  
+  #-------------------------->>>
+  # ESCALAR DATOS
+  #-------------------------->>>
+  # Valida si el usuario solicitÃ³ escalar los datos  
 
   if (is.null(Escala)){Escala=0}  
       
-# Escalando datos    
+  # Escalando datos    
   
   if (Escala==1)
   {
     Datos=scale(Datos, center = TRUE, scale  = TRUE)
   }
-  
-# DataSet final  
+
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>  
+  # DataSet final  
   
   Datos = data.frame(Datos)
   return(Datos)
 
 }
+
+#------------------------------------>>>
+# PREPARAR DATOS DE TEXTO
+#------------------------------------>>>
 
 R4XCL_INT_DATOS_TEXTO = function (
                                  SetDatosX,
@@ -199,22 +328,49 @@ R4XCL_INT_DATOS_TEXTO = function (
                                  Ponderadores = NULL
                                  )
 {
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  
+  if (missing(SetDatosX)) {
+    stop("Error: SetDatosX es un parÃ¡metro obligatorio.")
+  }
+  if (!is.data.frame(SetDatosX)) {
+    stop("Error: SetDatosX debe ser un data frame.")
+  }
+  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
+    stop("Error: SetDatosY debe ser un data frame.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
     require(svDialogs)
     P     = ncol(SetDatosX)
     pNObs = nrow(SetDatosX)
-# Si el usuario requiere filtrar datos, proceder a conformar vector filtro  
+    
+  #-------------------------->>>
+  # FILTRAR DATOS
+  #-------------------------->>>
+    
+  # Si el usuario requiere filtrar datos, proceder a conformar vector filtro  
     
     if (!is.null(Filtro))
        {Filtro = as.matrix(unlist(Filtro[-1,]))} 
     else 
        {Filtro=rep(0,pNObs)}
 
-# Si el usuario requiere corregir por heterocedasticidad      
+  # Si el usuario requiere corregir por heterocedasticidad      
     if (!is.null(Ponderadores))
       {Ponderadores = as.matrix(unlist(Ponderadores[-1,]))} 
     else 
       {Ponderadores=rep(1,pNObs)}    
-        
+
+  #-------------------------->>>
+  # PROCESAR DATOS
+  #-------------------------->>>
+    
     NombreVariablesX  = unlist(SetDatosX[1,1:P])
     DTX.F1 = SetDatosX[-1,]
     
@@ -252,35 +408,68 @@ R4XCL_INT_DATOS_TEXTO = function (
             colnames(Datos)[1] = NombreVariablesY
     } else{           Datos    = DTX.F}
     
+    #-------------------------->>>
+    # FILTRAR DATOS
+    #-------------------------->>>
+    
     Datos = Datos[Filtro==0,]
+    
+    #-------------------------->>>
+    # RESULTADO FINAL
+    #-------------------------->>>
     
     return(Datos)
 }
 
-R4XCL_INT_FUNCION = function (SetDatosX,SetDatosY = NULL)
+#------------------------------------>>>
+# DEFINIR FUNCIÃ“N
+#------------------------------------>>>
+
+R4XCL_INT_FUNCION <- function (SetDatosX,SetDatosY = NULL)
 {
   
-  pX = ncol(SetDatosX)
-  pY = ncol(SetDatosY)
-  pp = pY + pX
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(SetDatosX)) {
+    stop("Error: SetDatosX es un parÃ¡metro obligatorio.")
+  }
+  if (!is.data.frame(SetDatosX)) {
+    stop("Error: SetDatosX debe ser un data frame.")
+  }
+  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
+    stop("Error: SetDatosY debe ser un data frame.")
+  }
   
-  nombresX = paste0(SetDatosX[1,1:pX])
-  nombresY = paste0(SetDatosY[1,1])
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
   
-  DatosY  = SetDatosY[-1,]  
-  DatosX  = SetDatosX[-1,]
+  pX <- ncol(SetDatosX)
+  pY <- ncol(SetDatosY)
+  pp <- pY + pX
   
-  nX    = nrow(SetDatosX)-1
-  nY    = nX
+  nombresX <- paste0(SetDatosX[1,1:pX])
+  nombresY <- paste0(SetDatosY[1,1])
   
-  DatosY = matrix(DatosY, nrow=nY, ncol=pY)
-  DatosX = matrix(DatosX, nrow=nX, ncol=pX)
+  DatosY  <-SetDatosY[-1,]  
+  DatosX  <-SetDatosX[-1,]
   
-  colnames(DatosY)[1:pY] = nombresY[1:pY]
-  colnames(DatosX)[1:pX] = nombresX[1:pX]
+  nX    <- nrow(SetDatosX)-1
+  nY    <- nX
+  
+  #-------------------------->>>
+  # CONSTRUIR FORMULA
+  #-------------------------->>>  
+  
+  DatosY <- matrix(DatosY, nrow=nY, ncol=pY)
+  DatosX <- matrix(DatosX, nrow=nX, ncol=pX)
+  
+  colnames(DatosY)[1:pY] <- nombresY[1:pY]
+  colnames(DatosX)[1:pX] <- nombresX[1:pX]
 
-  especificacion_A = ""
-  especificacion_B = ""
+  especificacion_A <- ""
+  especificacion_B <- ""
   
   if (pp<1){
     
@@ -288,13 +477,13 @@ R4XCL_INT_FUNCION = function (SetDatosX,SetDatosY = NULL)
     
   }else if (pp==2){
     
-    especificacion_F = paste(nombresY[1],"~",nombresX[1],collapse = "")
+    especificacion_F <- paste(nombresY[1],"~",nombresX[1],collapse = "")
     
   }else if (pp>2){
     
-    especificacion_A = paste(nombresY,"~",nombresX[1],collapse = "")
-    especificacion_B = paste(" +" ,nombresX[2:pX] ,collapse  = "")
-    especificacion_F = paste(
+    especificacion_A <- paste(nombresY,"~",nombresX[1],collapse = "")
+    especificacion_B <- paste(" +" ,nombresX[2:pX] ,collapse  = "")
+    especificacion_F <- paste(
                               c(
                                 especificacion_A,
                                 especificacion_B
@@ -303,10 +492,18 @@ R4XCL_INT_FUNCION = function (SetDatosX,SetDatosY = NULL)
                              )
   }  
   
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
   return(especificacion_F)
 }
 
-R4XCL_INT_FILTRAR = function (
+#------------------------------------>>>
+# FILTRAR DATOS
+#------------------------------------>>>
+
+R4XCL_INT_FILTRAR <- function (
                               SetDatosX,
                               SetDatosY = NULL,
                               Filtro = NULL,
@@ -314,83 +511,197 @@ R4XCL_INT_FILTRAR = function (
                               pDimY,pX,pY,nX
                               )
 {
-
-  if (is.null(Ponderadores)){Ponderadores=rep(1,nX)}
-  if (is.null(Filtro)){Filtro=rep(0,nX)}
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(SetDatosX)) {
+    stop("Error: SetDatosX es un parÃ¡metro obligatorio.")
+  }
+  if (!is.data.frame(SetDatosX)) {
+    stop("Error: SetDatosX debe ser un data frame.")
+  }
+  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
+    stop("Error: SetDatosY debe ser un data frame.")
+  }
+  if (!is.null(Filtro) &&!is.vector(Filtro)) {
+    stop("Error: Filtro debe ser un vector.")
+  }
+  if (!is.null(Ponderadores) &&!is.vector(Ponderadores)) {
+    stop("Error: Ponderadores debe ser un vector.")
+  }
   
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
+  if (is.null(Ponderadores)){Ponderadores<-rep(1,nX)}
+  if (is.null(Filtro)){Filtro<-rep(0,nX)}
+ 
+  #-------------------------->>>
+  # FILTRAR DATOS
+  #-------------------------->>> 
 
       if (!is.null(pDimY))
       {
         
-        pXY        = 1 + pX
-        YX         = cbind(SetDatosY,SetDatosX,Ponderadores)
-        YX         = YX[Filtro==0,]
+        pXY     <-    1 + pX
+        YX      <-    cbind(SetDatosY,SetDatosX,Ponderadores)
+        YX      <-    YX[Filtro==0,]
         
       }else{
         
-        YX         = cbind(SetDatosX,Ponderadores)
-        YX         = YX[Filtro==0,]
+        YX      <- cbind(SetDatosX,Ponderadores)
+        YX      <- YX[Filtro==0,]
         
       }
   
-      SetFiltrado = data.frame(YX)
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  SetFiltrado = data.frame(YX)
+  return(SetFiltrado)
+  
 }
 
-R4XCL_INT_INFO_EJECUCION = function(FX,DT)
+R4XCL_INT_INFO_EJECUCION <- function(FX,DT)
 {
-  InfoEjecucion = rbind(
-                       paste0("Especificación: ",FX),
+  
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  
+  if (missing(FX)) {
+    stop("Error: FX es un parÃ¡metro obligatorio.")
+  }
+  if (missing(DT)) {
+    stop("Error: DT es un parÃ¡metro obligatorio.")
+  }
+  if (!is.data.frame(DT)) {
+    stop("Error: DT debe ser un data frame.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
+  InfoEjecucion <- rbind(
+                       paste0("EspecificaciÃ³n: ",FX),
                        paste0("N = ",nrow(DT)),
                        paste0("Ejecutado por: ",Sys.getenv("USERNAME")),
-                       paste0("Fecha Ejecución: ",Sys.time())
+                       paste0("Fecha EjecuciÃ³n: ",Sys.time())
                        )
+  
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
   
   return(InfoEjecucion)
 }
 
-R4XCL_INT_CREARDS = function(ListaM,ListaN)
+R4XCL_INT_CREARDS <- function(ListaM,ListaN)
 {
-  MODELOS = ListaM
-  NOMBRES = ListaN 
   
-  i=1
-  qModelos= length(ListaM)
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  if (missing(ListaM)) {
+    stop("Error: ListaM es un parÃ¡metro obligatorio.")
+  }
+  if (missing(ListaN)) {
+    stop("Error: ListaN es un parÃ¡metro obligatorio.")
+  }
+  if (!is.list(ListaM)) {
+    stop("Error: ListaM debe ser una lista.")
+  }
+  if (!is.character(ListaN)) {
+    stop("Error: ListaN debe ser un vector de caracteres.")
+  }
+  if (length(ListaM)!= length(ListaN)) {
+    stop("Error: ListaM y ListaN deben tener la misma longitud.")
+  }
   
-  fecha=R4XCL_INT_FECHA()
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
   
-  output_dir=R4XCL_INT_CREA_CARPETA()
+  MODELOS <- ListaM
+  NOMBRES <- ListaN 
+  
+  i<-1
+  qModelos<- length(ListaM)
+  
+  fecha <- R4XCL_INT_FECHA()
+  
+  output_dir <- R4XCL_INT_CREA_CARPETA()
+  
+  #-------------------------->>>
+  # GUARDAR MODELOS
+  #-------------------------->>>
   
   while (i<=qModelos){
     saveRDS(
       MODELOS[i],  
       paste0(output_dir,"\\",NOMBRES[i],"_",fecha,".rds")
     )
-    i=i+1
+    i<-i+1
     
   }
+  
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
   
   return(paste0("Archivos creados en: ", output_dir )) 
   
 }
 
-R4XCL_INT_CREAXCL = function(pModelo)
+R4XCL_INT_CREAXCL <- function(pModelo)
 {
+  
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  
+  if (missing(pModelo)) {
+    stop("Error: pModelo es un parÃ¡metro obligatorio.")
+  }
+  if (!is.list(pModelo)) {
+    stop("Error: pModelo debe ser una lista.")
+  }
+  if (length(pModelo) == 0) {
+    stop("Error: pModelo no puede ser una lista vacÃ­a.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
   
   library(writexl)
   
-  qModelos=length(pModelo)
+  qModelos <- length(pModelo)
 
-  pRuta=R4XCL_INT_CREA_CARPETA()
-  pFecha=R4XCL_INT_FECHA()
-  pFinal=paste0(pRuta,"\\R4XCL_",pFecha,".xlsx")
+  pRuta  <- R4XCL_INT_CREA_CARPETA()
+  pFecha <- R4XCL_INT_FECHA()
+  pFinal <- paste0(pRuta,"\\R4XCL_",pFecha,".xlsx")
+  
+  #-------------------------->>>
+  # GUARDAR MODELOS
+  #-------------------------->>>
   
   write_xlsx(pModelo, pFinal)
+  
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  return(paste0("Archivo creado en: ", pFinal))
 
 }
 
-R4XCL_INT_PROCEDIMIENTOS = function()
+R4XCL_INT_PROCEDIMIENTOS <- function()
 {
-     Reg_PanelData = 
+     Reg_PanelData <- 
       c(
         "[ 1] Estimacion Datos de Panel", 
         "[ 2] Efectos Fijos para INDIVIDUOS",
@@ -401,70 +712,70 @@ R4XCL_INT_PROCEDIMIENTOS = function()
         "[ 7] Test de Breush-Pagan para efectos aleatorios en [i]",
         "[ 8] Test de Breush-Pagan para efectos aleatorios en [t,i]",
         "[ 9] Test de Breush-Pagan para efectos aleatorios",
-        "[10] Test de Breush-Pagan para correlación contemporanea",
-        "[11] Test de Pesaran para correlación contemporanea",
+        "[10] Test de Breush-Pagan para correlaci?n contemporanea",
+        "[11] Test de Pesaran para correlaci?n contemporanea",
         "[12] Test de correlacion serial",
         "[13] Test de raiz unitaria", 
-        "[14] Especificación empleada",
+        "[14] Especificaci?n empleada",
         "[15] Guardar Modelo Estimado en RDS"
        )
     
-    Reg_Lineal = 
+    Reg_Lineal <- 
       c(
-        "[1] Estimar Modelo de Regresión Lineal",
+        "[1] Estimar Modelo de Regresi?n Lineal",
         "[2] Estimar valores para la [Y] (dentro de muestra)",
         "[3] Estimar valores para la [Y] (fuera de muestra)",
         "[4] Obtener efectos marginales",
-        "[5] Calcular coeficiente de Inflación de Varianza VIF",
+        "[5] Calcular coeficiente de Inflaci?n de Varianza VIF",
         "[6] Test de heterocedasticidad Breusch-Pagan", 
-        "[7] Estimación robusta de coeficientes",
+        "[7] Estimaci?n robusta de coeficientes",
         "[8] Identificar observaciones de influencia en la muestra",
-        "[9] Especificación empleada",
+        "[9] Especificaci?n empleada",
         "[10] Guardar Modelo Estimado en R",
         "[11] Modelo estimado con formato original de R",
         "[12] Obtener residuos estimados"
        )
     
-    Reg_Binaria =  
+    Reg_Binaria <-  
       c(
-        "[1] Estimar Modelo de Regresión Binaria",
+        "[1] Estimar Modelo de Regresi?n Binaria",
         "[2] Estimar P[Y=1|XB] (dentro de muestra)",
         "[3] Estimar P[Y=1|XB] (fuera de muestra)",
         "[4] Test de Hosmer & Lemeshow",
         "[5] Obtener efectos marginales",
         "[6] ANOVA",
-        "[7] Especificación empleada",
+        "[7] Especificaci?n empleada",
         "[8] Guardar Modelo Estimado en R"
        )
     
-    Reg_Tobit =  
+    Reg_Tobit <-  
       c(
-        "[1] Estimar Modelo de Regresión Tobit",
+        "[1] Estimar Modelo de Regresi?n Tobit",
         "[2] Estimar [Y] (dentro de muestra)",
         "[3] Estimar [Y] (fuera de muestra)",
-        "[4] Especificación empleada",
+        "[4] Especificaci?n empleada",
         "[5] Guardar Modelo Estimado en R"
        )
     
-    Reg_Poisson = 
+    Reg_Poisson <- 
       c(
-        "[1] Estimar Modelo de Regresión Poisson",
+        "[1] Estimar Modelo de Regresi?n Poisson",
         "[2] Estimar [Y] (dentro de muestra)",
         "[3] Estimar [Y] (fuera de muestra)",
-        "[4] Especificación empleada",
+        "[4] Especificaci?n empleada",
         "[5] Guardar Modelo Estimado en R"
        )
     
-    Reg_Arboles = 
+    Reg_Arboles <- 
       c(
-        "[1] Estimar Modelo de Arboles de Decisión",
+        "[1] Estimar Modelo de Arboles de Decisi?n",
         "[2] Estimar [Y] (dentro de muestra)",
         "[3] Estimar [Y] (fuera de muestra)",
-        "[4] Especificación empleada",
+        "[4] Especificaci?n empleada",
         "[5] Guardar Modelo Estimado en R"
        )
     
-    AD_KMedias =  
+    AD_KMedias <-  
       c(
         "[1] Cluster Asignado",
         "[2] Centros",
@@ -475,42 +786,42 @@ R4XCL_INT_PROCEDIMIENTOS = function()
         "[7] K-Optimo"
        )
     
-    AD_ACP = 
+    AD_ACP <- 
       c(
         "[1] Matriz de Correlaciones",
         "[2] Matriz de Covarianza",
-        "[3] Gráfico de Correlaciones",
+        "[3] Gr?fico de Correlaciones",
         "[4] Componentes Principales",
         "[5] Coordenadas de Individuos",
         "[6] COS^2 de Individuos",
-        "[7] Contribución de individuos",
+        "[7] Contribuci?n de individuos",
         "[8] Aporte a la Varianza del CP(i)",
         "[9] COS^2 de variables",
-        "[10] Contribución de variables",
-        "[11] Predicción fuera de muestra",
-        "[12] Gráfico Biplot"
+        "[10] Contribuci?n de variables",
+        "[11] Predicci?n fuera de muestra",
+        "[12] Gr?fico Biplot"
        )
     
-    Mat_Algebra =  
+    Mat_Algebra <-  
       c(
-        "[1] Factorización de Cholesky",
+        "[1] Factorizaci?n de Cholesky",
         "[2] Valores propios",
         "[3] Vectores propios",
-        "[4] Decomposición QR",
+        "[4] Decomposici?n QR",
         "[5] Matriz Inversa",
         "[6] Singular Value Decomposition",
         "[7] Diagonal de la matriz",
         "[8] Matriz Transpuesta"
        )
     
-    Computo_Vars=
+    Computo_Vars <-
       list(
            "[1] Crea variables Dummies",
            "[2] Centrar y/o estandarizar conjunto de Datos",
-           "[3] Computar Distancias (Euclideana, Máximo, Canberra, Binaria)"
+           "[3] Computar Distancias (Euclideana, M?ximo, Canberra, Binaria)"
            )
     
-    Graficacion=
+    Graficacion <-
       list(
         "[1] BoxPlot",
         "[2] EN PROCESO",
@@ -523,7 +834,7 @@ R4XCL_INT_PROCEDIMIENTOS = function()
         "[9] EN PROCESO"
       )
     
-Procedimientos = 
+Procedimientos <- 
   list(
       "PANEL"   = Reg_PanelData, 
       "LINEAL"  = Reg_Lineal,
@@ -543,59 +854,49 @@ return (Procedimientos)
 
 R4XCL_INT_DIALOGOS <<- function()
 {
-    DialogosXCL = list( 
-                      Descripcion        = "description",
-                      
-                      SetDatosX          = "Variables INDEPENDIENTES",
-                      SetDatosX.NS       = "Datos por Analizar",
-                      SetDatosX.MT       = "Seleccione la matriz cuadrada (incluir nombres de variables)",
-                      SetDatosY          = "Variables DEPENDIENTES",
-                      
-                      Categorica         = "Contiene sus datos información NO NUMERICA? 1:SI, 0:NO",
-                      Filtro             = "0:Incluir registro, 1:Excluir registro (0:Default)",
-                      Constante          = "Incluir constante de estimación 1:SI, 0:NO (1:Default)",
-                      Escala             = "Escalar datos? 1:SI, 0:NO (0:Default)",
-                      Semilla            = "Valor de generación aleatoria (ej:123456)",
-                      Ponderadores       = "Pesos a emplear en Minimos Cuadrados",
-                      
-                      K                  = "Cantidad de Clusters requeridos",
-                      Koptimo            = "Cantidad maxima de Clusters por testear",
-                      Centroides         = "Centros obtenidos del proceso de K-medias",
-                      
-                      FactorEscalamiento = "Criterio de Escalamiento Original",
-                      
-                      SetDatosPredecir   = "Computar datos fuera de muestra",
-                      
-                      Detalle.Algebra    = "Calculos matriciales para matrices pXp",
-                      Detalle.Binario    = "Estima un modelo de Regresión para variable binaria: Y = {0,1}",        
-                      Detalle.Poisson    = "Estima un modelo de Regresión Poisson",
-                      Detalle.Lineal     = "Estima un modelo de Regresión lineal",
-                      Detalle.Panel      = "Estima un modelo de Datos de Panel",
-                      Detalle.Tobit      = "Estima un modelo de Regresion Tobit",
-                      Detalle.Arbol      = "Estima un modelo de Arbol de Decisión",
-                      Detalle.KM         = "Análisis de Conglomerados (K-Medias)",
-                      Detalle.ACP        = "Análisis de Componentes Principales [ACP]",
-                      
-                      TipoModelo.KM      = "1:Hartigan-Wong, 2:Lloyd, 3:Forgy, 4:MacQueen",
-                      TipoModelo.Binario = "0:Logit, 1:Probit",
-                      TipoOutput.Binario = "1:Modelo, 2:Probabilidad Estimada, 3:Predicción, 4:Test HL, 5:Efectos Marginales",
-                      TipoOutput.Lineal  = "1:Modelo, 2:Y Estimado, 3:Predicción, 4:Efectos Marginales, 5: Multicolinealidad, 6: Heterocedasticidad, 7:Estimación Robusta, 8: Outliers, 9:Especificacion, 10: Salvar Modelo",
-                      TipoOutput.KM      = "1:Clasificación, 2:Centros, 3:Variabilidad INTRA clase, 4:Variabilidad Total, 5:Parametros de Proceso, 6:GAP, 7:K-Óptimo",
-                      TipoOutput.ACP     = "1:Matriz de Correlación, 2:Coordenadas: Variables, 3:Coordenadas: Individuos, 4:COS^2: INDs, 5:Contribución:INDs, 6:Valores Propios, 7:COS^2: VARs, 8:Contribución:VARs, 9:Predicción, 10:Gráfico VARs|INDs",
-                      TipoOutput.MT      = "1:Factorización Choleski, 2:Valores Propios, 3:Vectores Propios, 4:QR Decomposition, 5:Matriz Inversa, 6:Singular Value Decomposition, 7: Diagonal, 8:Transpuesta",
-                      
-                      Variable_i         = "Variable que identifica a los individuos",
-                      Variable_t         = "Variable que identifica el tiempo",
-                      
-                      ValorTruncamiento  = "Valor umbral del truncamiento",   
-                      
-                      DirTruncamiento    = "Negativo: Truncamiento por la izquierda, Positivo: Truncamiento por la derecha"
+    DialogosXCL <- list( 
+                      Descripcion        <- "description",
+                      SetDatosX          <- "Variables INDEPENDIENTES",
+                      SetDatosX.NS       <- "Datos por Analizar",
+                      SetDatosX.MT       <- "Seleccione la matriz cuadrada (incluir nombres de variables)",
+                      SetDatosY          <- "Variables DEPENDIENTES",
+                      Categorica         <- "Contiene sus datos informaci?n NO NUMERICA? 1:SI, 0:NO",
+                      Filtro             <- "0:Incluir registro, 1:Excluir registro (0:Default)",
+                      Constante          <- "Incluir constante de estimaci?n 1:SI, 0:NO (1:Default)",
+                      Escala             <- "Escalar datos? 1:SI, 0:NO (0:Default)",
+                      Semilla            <- "Valor de generaci?n aleatoria (ej:123456)",
+                      Ponderadores       <- "Pesos a emplear en Minimos Cuadrados",
+                      K                  <- "Cantidad de Clusters requeridos",
+                      Koptimo            <- "Cantidad maxima de Clusters por testear",
+                      Centroides         <- "Centros obtenidos del proceso de K-medias",
+                      FactorEscalamiento <- "Criterio de Escalamiento Original",
+                      SetDatosPredecir   <- "Computar datos fuera de muestra",
+                      Detalle.Algebra    <- "Calculos matriciales para matrices pXp",
+                      Detalle.Binario    <- "Estima un modelo de Regresi?n para variable binaria: Y = {0,1}",        
+                      Detalle.Poisson    <- "Estima un modelo de Regresi?n Poisson",
+                      Detalle.Lineal     <- "Estima un modelo de Regresi?n lineal",
+                      Detalle.Panel      <- "Estima un modelo de Datos de Panel",
+                      Detalle.Tobit      <- "Estima un modelo de Regresion Tobit",
+                      Detalle.Arbol      <- "Estima un modelo de Arbol de Decisi?n",
+                      Detalle.KM         <- "An?lisis de Conglomerados (K-Medias)",
+                      Detalle.ACP        <- "An?lisis de Componentes Principales [ACP]",
+                      TipoModelo.KM      <- "1:Hartigan-Wong, 2:Lloyd, 3:Forgy, 4:MacQueen",
+                      TipoModelo.Binario <- "0:Logit, 1:Probit",
+                      TipoOutput.Binario <- "1:Modelo, 2:Probabilidad Estimada, 3:Predicci?n, 4:Test HL, 5:Efectos Marginales",
+                      TipoOutput.Lineal  <- "1:Modelo, 2:Y Estimado, 3:Predicci?n, 4:Efectos Marginales, 5: Multicolinealidad, 6: Heterocedasticidad, 7:Estimaci?n Robusta, 8: Outliers, 9:Especificacion, 10: Salvar Modelo",
+                      TipoOutput.KM      <- "1:Clasificaci?n, 2:Centros, 3:Variabilidad INTRA clase, 4:Variabilidad Total, 5:Parametros de Proceso, 6:GAP, 7:K-?ptimo",
+                      TipoOutput.ACP     <- "1:Matriz de Correlaci?n, 2:Coordenadas: Variables, 3:Coordenadas: Individuos, 4:COS^2: INDs, 5:Contribuci?n:INDs, 6:Valores Propios, 7:COS^2: VARs, 8:ContribuciÃ³n:VARs, 9:Predicci?n, 10:Gr?fico VARs|INDs",
+                      TipoOutput.MT      <- "1:Factorizaci?n Choleski, 2:Valores Propios, 3:Vectores Propios, 4:QR Decomposition, 5:Matriz Inversa, 6:Singular Value Decomposition, 7: Diagonal, 8:Transpuesta",
+                      Variable_i         <- "Variable que identifica a los individuos",
+                      Variable_t         <- "Variable que identifica el tiempo",
+                      ValorTruncamiento  <- "Valor umbral del truncamiento",   
+                      DirTruncamiento    <- "Negativo: Truncamiento por la izquierda, Positivo: Truncamiento por la derecha"
                     )
    
    return(DialogosXCL)
 }
 
-R4XCL_INT_POR_INSTALAR = function()
+R4XCL_INT_POR_INSTALAR <- function()
 {
     c(
       "broom",      "car",       	          "corrplot",  	 "curl",     "data.table",     	         "dplyr",    
