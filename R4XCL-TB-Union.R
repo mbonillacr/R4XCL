@@ -1,6 +1,27 @@
 TBL_UNION = function(TABLA1, TABLA2)
 {
   
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  
+  if (missing(TABLA1)) {
+    stop("Error: TABLA1 es un parÃ¡metro obligatorio.")
+  }
+  if (missing(TABLA2)) {
+    stop("Error: TABLA2 es un parÃ¡metro obligatorio.")
+  }
+  if (!is.data.frame(TABLA1)) {
+    stop("Error: TABLA1 debe ser un data frame.")
+  }
+  if (!is.data.frame(TABLA2)) {
+    stop("Error: TABLA2 debe ser un data frame.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
+  
   TABLA.1=R4XCL_INT_DATOS_TEXTO(TABLA1)
   TABLA.2=R4XCL_INT_DATOS_TEXTO(TABLA2)
     
@@ -10,16 +31,16 @@ TBL_UNION = function(TABLA1, TABLA2)
   library(svDialogs)
   
   TipoUnion.Disponible = c(
-                          "[INNER Join] Que estén en AMBAS tablas",
-                          "[LEFT  Join] Que estén SÓLO en tabla 1",
-                          "[RIGHT Join] Que estén SÓLO en tabla 2",
+                          "[INNER Join] Que estÃ©n en AMBAS tablas",
+                          "[LEFT  Join] Que estÃ©n SÃ“LO en tabla 1",
+                          "[RIGHT Join] Que estÃ©n SÃ“LO en tabla 2",
                           "[OUTER Join] ",
-                          "[CROSS Join] Combinación de AMBAS tablas"
+                          "[CROSS Join] CombinaciÃ³n de AMBAS tablas"
                           )
   
   Instrucciones = c(
-                    "Variable de unión TABLA",
-                    "Tipo de Unión que desea realizar"
+                    "Variable de uniÃ³n TABLA",
+                    "Tipo de UniÃ³n que desea realizar"
                     )
   
   A = dlg_list(
@@ -44,9 +65,13 @@ TBL_UNION = function(TABLA1, TABLA2)
                )
   ID2=A$res
   
+  #-------------------------->>>
+  # UNIR TABLAS
+  #-------------------------->>>
+  
   if (TipoUnion.Seleccionada == TipoUnion.Disponible[1]){
     
-  # Que esté en ambas tablas
+  # Que estÃ© en ambas tablas
       
       OutPut = merge(
                      x = TABLA.1,
@@ -57,7 +82,7 @@ TBL_UNION = function(TABLA1, TABLA2)
                       
   } else if  (TipoUnion.Seleccionada ==TipoUnion.Disponible[2]){
   
-  # Que esté en sólo tabla 1: LEFT JOIN
+  # Que estÃ© en sÃ³lo tabla 1: LEFT JOIN
   
     OutPut = merge(x=TABLA.1, 
                    y=TABLA.2, 
@@ -67,7 +92,7 @@ TBL_UNION = function(TABLA1, TABLA2)
   
   } else if  (TipoUnion.Seleccionada ==TipoUnion.Disponible[3]){
     
-  # Que esté en sólo tabla 2: RIGTH JOIN
+  # Que estÃ© en sÃ³lo tabla 2: RIGTH JOIN
   
     OutPut = merge(x=TABLA.1, 
                    y=TABLA.2, 
@@ -94,7 +119,12 @@ TBL_UNION = function(TABLA1, TABLA2)
                    all.x = TRUE)
   } 
   
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
     if (nrow(OutPut)==0){OutPut=t(colnames(OutPut))}
-    return(OutPut)
+    
+  return(OutPut)
 
 }

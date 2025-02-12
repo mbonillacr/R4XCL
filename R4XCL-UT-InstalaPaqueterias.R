@@ -1,14 +1,21 @@
-
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# Instala Paquetes Necesarios para R4XCL               +
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# INSTALAR PAQUETES
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 UT_InstalaPaquetes = function(PQT=NULL)
 {  
-  #RepoMsft= 'https://cran.microsoft.com/snapshot/2019-04-15/'
-  #OBTENER DE: https://cran.microsoft.com/snapshot/
-
-  RepoMsft= 'https://cran.microsoft.com/snapshot/2021-11-05/'
+  
+  #-------------------------->>>
+  # VALIDACIONES
+  #-------------------------->>>
+  
+  if (!is.null(PQT) &&!is.character(PQT)) {
+    stop("Error: PQT debe ser un vector de caracteres.")
+  }
+  
+  #-------------------------->>>
+  # PREPARACION DE DATOS Y PARAMETROS
+  #-------------------------->>>
   
   RepoMsft='http://cran.us.r-project.org'
   
@@ -19,8 +26,16 @@ UT_InstalaPaquetes = function(PQT=NULL)
                   
   } else {InstalarPaquetes = c(PQT)}
   
-   install.packages(InstalarPaquetes, dependencies = TRUE, repos=RepoMsft)
-
-   return(InstalarPaquetes)
+  #-------------------------->>>
+  # INSTALAR PAQUETES
+  #-------------------------->>>
+  
+  install.packages(InstalarPaquetes, dependencies = TRUE, repos = RepoMsft)
+  
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  return(InstalarPaquetes)
    
 }
