@@ -175,6 +175,7 @@ AD_KMedias.D <- function(
 
 
 DialogosXCL=R4XCL_INT_DIALOGOS()
+
 attr(AD_KMedias.D, DialogosXCL$Descripcion) = 
   list(
     Detalle     = DialogosXCL$Detalle.KM,

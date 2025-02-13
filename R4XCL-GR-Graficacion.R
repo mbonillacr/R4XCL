@@ -124,7 +124,7 @@ GR_Graficos.D <- function(
 }
 
 DialogosXCL=R4XCL_INT_DIALOGOS()
-attr(AD_KMedias.D, DialogosXCL$Descripcion) = 
+attr(GR_Graficos.D, DialogosXCL$Descripcion) = 
   list(
         Detalle     = DialogosXCL$Detalle.KM,
         SetDatosX   = DialogosXCL$SetDatosX.NS,

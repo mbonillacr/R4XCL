@@ -147,7 +147,7 @@ MR_Poisson.C <- function(
     
   } else if (TipoOutput > 7){   
     
-    OutPut <- "Revisar par?metros disponibles"  
+    OutPut <- "Revisar parámetros disponibles"  
     
   }  
   
@@ -165,7 +165,6 @@ attr(MR_Poisson.C, DialogosXCL$Descripcion) =
     SetDatosY         = DialogosXCL$SetDatosY,
     SetDatosX         = DialogosXCL$SetDatosX,
     Categorica        = DialogosXCL$Categorica,
-    #Escala            = DialogosXCL$Escala,
     Filtro            = DialogosXCL$Filtro,
     TipoOutput        = DialogosXCL$TipoOutput.Poisson,
     SetDatosPredecir  = DialogosXCL$SetDatosPredecir,

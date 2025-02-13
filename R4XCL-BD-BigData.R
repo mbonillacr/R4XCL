@@ -95,6 +95,6 @@ UT_ArchivoExternoLRG = function()
 Detalle = "Importa un archivo externo grande y realiza un análisis exploratorio."
 attr(UT_ArchivoExternoLRG, "description" ) = 
   list( 
-    Detalle,
+    Detalle
     #TipoOutput= "0:INCLUIR DESCRIPCION, 1:INCLUIR DESCRIPCION, 2:, 3:, 4:"
   )

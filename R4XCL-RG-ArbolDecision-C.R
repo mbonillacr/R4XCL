@@ -16,6 +16,7 @@ AD_ArbolDeDecision.C <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
+  
   if (missing(SetDatosX)) {
     stop("Error: SetDatosX es un parámetro obligatorio.")
   }
@@ -85,7 +86,7 @@ AD_ArbolDeDecision.C <- function(
     
     suppressMessages(rpart.plot(Modelo))
     
-    OutPut <- "Ver Gr?fico"
+    OutPut <- "Ver Gráfico"
     
   }else if(TipoOutput == 2){   
     
@@ -141,7 +142,7 @@ AD_ArbolDeDecision.C <- function(
     
   }else if(TipoOutput > 8){   
     
-    OutPut <- "Revisar par?metros disponibles" 
+    OutPut <- "Revisar parámetros disponibles" 
     
   }  
   

@@ -8,9 +8,9 @@ UT_Computo_Vars <- function(SetDatosX)
   #-------------------------->>>   
   # VALIDACIONES
   #-------------------------->>>  
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
+  # if (!is.data.frame(SetDatosX)) {
+  #   stop("Error: SetDatosX debe ser un data frame.")
+  # }
   
   
   library(dummies)
@@ -19,6 +19,7 @@ UT_Computo_Vars <- function(SetDatosX)
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
   #-------------------------->>>  
+  #SetDatosX=data.frame(SetDatosX)
   
   p <- ncol(SetDatosX)
   n <- nrow(SetDatosX)-1

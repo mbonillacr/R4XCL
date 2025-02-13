@@ -175,7 +175,7 @@ AD_KMedias.C <- function(
 }
 
 DialogosXCL=R4XCL_INT_DIALOGOS()
-attr(AD_KMedias.C, DialogosXCL$Descripcion) = 
+attr(AD_KMedias.C, "description") = 
   list(
     Detalle     = DialogosXCL$Detalle.KM,
     SetDatosX   = DialogosXCL$SetDatosX.NS,
@@ -187,6 +187,7 @@ attr(AD_KMedias.C, DialogosXCL$Descripcion) =
     TipoModelo  = DialogosXCL$TipoModelo.KM,
     TipoOutput  = DialogosXCL$TipoOutput.KM
   )
+
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
 # ALGORITMO DE K MEDIAS FUERA DE MUESTRA               +
