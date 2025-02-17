@@ -8,24 +8,24 @@ MP_MapaISO03 <- function(NombrePaises, Valores, Titulo )
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(NombrePaises)) {
-    stop("Error: NombrePaises es un parámetro obligatorio.")
-  }
-  if (missing(Valores)) {
-    stop("Error: Valores es un parámetro obligatorio.")
-  }
-  if (missing(Titulo)) {
-    stop("Error: Titulo es un parámetro obligatorio.")
-  }
-  if (!is.character(NombrePaises)) {
-    stop("Error: NombrePaises debe ser un vector de caracteres.")
-  }
-  if (!is.numeric(Valores)) {
-    stop("Error: Valores debe ser un vector numérico.")
-  }
-  if (length(NombrePaises)!= length(Valores)) {
-    stop("Error: NombrePaises y Valores deben tener la misma longitud.")
-  }
+  # if (missing(NombrePaises)) {
+  #   stop("Error: NombrePaises es un parámetro obligatorio.")
+  # }
+  # if (missing(Valores)) {
+  #   stop("Error: Valores es un parámetro obligatorio.")
+  # }
+  # if (missing(Titulo)) {
+  #   stop("Error: Titulo es un parámetro obligatorio.")
+  # }
+  # if (!is.character(NombrePaises)) {
+  #   stop("Error: NombrePaises debe ser un vector de caracteres.")
+  # }
+  # if (!is.numeric(Valores)) {
+  #   stop("Error: Valores debe ser un vector numérico.")
+  # }
+  # if (length(NombrePaises)!= length(Valores)) {
+  #   stop("Error: NombrePaises y Valores deben tener la misma longitud.")
+  # }
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS

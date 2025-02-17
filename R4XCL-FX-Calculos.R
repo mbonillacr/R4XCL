@@ -12,15 +12,15 @@ UT_Computo_Vars <- function(SetDatosX)
   #   stop("Error: SetDatosX debe ser un data frame.")
   # }
   
-  
   library(dummies)
   library(svDialogs)
-  
+
+  #print(packageVersion("svDialogs"))
+
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
   #-------------------------->>>  
-  #SetDatosX=data.frame(SetDatosX)
-  
+
   p <- ncol(SetDatosX)
   n <- nrow(SetDatosX)-1
   
@@ -33,8 +33,7 @@ UT_Computo_Vars <- function(SetDatosX)
   #-------------------------->>> 
 
   vctr.metodo <- Procedimientos$COMPUTOS
-  A <- dlg_list(vctr.metodo)
-  TipoOutput <- A$res
+  TipoOutput  <- svDialogs::dlgList(vctr.metodo, gui = .GUI)$res
   
   if (TipoOutput <= Procedimientos$COMPUTOS[1]){
     
@@ -54,8 +53,8 @@ UT_Computo_Vars <- function(SetDatosX)
   }else if(TipoOutput == Procedimientos$COMPUTOS[3]){
     
     vctr.metodo <- c("euclidean", "maximum","canberra","binary")
-    A <- dlg_list(vctr.metodo)
-    TipoOutput <- A$res
+    #A <- dlgList(vctr.metodo)
+    TipoOutput <- svDialogs::dlgList(vctr.metodo,gui = .GUI)$res
     
     OutPut <- dist(DatosX, method = TipoOutput, diag = TRUE, upper = TRUE, p = 2)
     OutPut <- as.matrix(OutPut)

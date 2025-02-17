@@ -15,33 +15,33 @@ MR_Tobit.C <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (missing(SetDatosY)) {
-    stop("Error: SetDatosY es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
-  if (!is.data.frame(SetDatosY)) {
-    stop("Error: SetDatosY debe ser un data frame.")
-  }
-  if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
-    stop("Error: Categorica debe ser 0 o 1.")
-  }
-  if (!is.numeric(DirTruncamiento)) {
-    stop("Error: DirTruncamiento debe ser un número.")
-  }
-  if (!is.numeric(ValorTruncamiento)) {
-    stop("Error: ValorTruncamiento debe ser un número.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 6) {
-    stop("Error: TipoOutput debe ser un número entre 0 y 6.")
-  }
-  if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
-    stop("Error: SetDatosPredecir debe ser un data frame.")
-  }
+  # if (missing(SetDatosX)) {
+  #   stop("Error: SetDatosX es un parámetro obligatorio.")
+  # }
+  # if (missing(SetDatosY)) {
+  #   stop("Error: SetDatosY es un parámetro obligatorio.")
+  # }
+  # if (!is.data.frame(SetDatosX)) {
+  #   stop("Error: SetDatosX debe ser un data frame.")
+  # }
+  # if (!is.data.frame(SetDatosY)) {
+  #   stop("Error: SetDatosY debe ser un data frame.")
+  # }
+  # if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
+  #   stop("Error: Categorica debe ser 0 o 1.")
+  # }
+  # if (!is.numeric(DirTruncamiento)) {
+  #   stop("Error: DirTruncamiento debe ser un número.")
+  # }
+  # if (!is.numeric(ValorTruncamiento)) {
+  #   stop("Error: ValorTruncamiento debe ser un número.")
+  # }
+  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 6) {
+  #   stop("Error: TipoOutput debe ser un número entre 0 y 6.")
+  # }
+  # if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
+  #   stop("Error: SetDatosPredecir debe ser un data frame.")
+  # }
   
   # https://stats.idre.ucla.edu/r/dae/tobit-models/
   
@@ -66,7 +66,7 @@ MR_Tobit.C <- function(
                         SetDatosX=SetDatosX,
                         Filtro=Filtro,
                         Categorica=Categorica
-                      )
+                       )
   
   P  <- ncol(DT)
   

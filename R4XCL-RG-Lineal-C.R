@@ -18,36 +18,36 @@ MR_Lineal.C <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (missing(SetDatosY)) {
-    stop("Error: SetDatosY es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
-  if (!is.data.frame(SetDatosY)) {
-    stop("Error: SetDatosY debe ser un data frame.")
-  }
-  if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
-    stop("Error: Categorica debe ser 0 o 1.")
-  }
-  if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
-    stop("Error: Escala debe ser 0 o 1.")
-  }
-  if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
-    stop("Error: SetDatosPredecir debe ser un data frame.")
-  }
-  if (!is.numeric(Constante) || Constante < 0 || Constante > 1) {
-    stop("Error: Constante debe ser 0 o 1.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 12) {
-    stop("Error: TipoOutput debe ser un número entre 0 y 12.")
-  }
-  if (!is.null(Ponderadores) &&!is.vector(Ponderadores)) {
-    stop("Error: Ponderadores debe ser un vector.")
-  }
+  # if (missing(SetDatosX)) {
+  #   stop("Error: SetDatosX es un parámetro obligatorio.")
+  # }
+  # if (missing(SetDatosY)) {
+  #   stop("Error: SetDatosY es un parámetro obligatorio.")
+  # }
+  # if (!is.data.frame(SetDatosX)) {
+  #   stop("Error: SetDatosX debe ser un data frame.")
+  # }
+  # if (!is.data.frame(SetDatosY)) {
+  #   stop("Error: SetDatosY debe ser un data frame.")
+  # }
+  # if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
+  #   stop("Error: Categorica debe ser 0 o 1.")
+  # }
+  # if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
+  #   stop("Error: Escala debe ser 0 o 1.")
+  # }
+  # if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
+  #   stop("Error: SetDatosPredecir debe ser un data frame.")
+  # }
+  # if (!is.numeric(Constante) || Constante < 0 || Constante > 1) {
+  #   stop("Error: Constante debe ser 0 o 1.")
+  # }
+  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 12) {
+  #   stop("Error: TipoOutput debe ser un número entre 0 y 12.")
+  # }
+  # if (!is.null(Ponderadores) &&!is.vector(Ponderadores)) {
+  #   stop("Error: Ponderadores debe ser un vector.")
+  # }
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -155,7 +155,7 @@ MR_Lineal.C <- function(
                      se=list(NULL, robust.se),
                      column.labels=c("OLS","OLS E.S. Robusto"), 
                      type="text",
-                     align=TRUE)  
+                     align=TRUE);  
     
   }else if(TipoOutput == 8){ 
     
@@ -190,7 +190,7 @@ MR_Lineal.C <- function(
   # [4] RESULTADO FINAL
   #-------------------------->>> 
   
-  return(OutPut)  
+  return(OutPut);  
 }
 
 DialogosXCL <- R4XCL_INT_DIALOGOS()
