@@ -14,12 +14,12 @@ TM_TextMining <- function(RUTA_FL=NULL,
   #-------------------------->>>   
   # VALIDACIONES
   #-------------------------->>>  
-  if (!is.character(RUTA_FL) ||!file.exists(RUTA_FL)) {
-    stop("Error: RUTA_FL debe ser una ruta válida a un archivo de texto.")
-  }
-  if (!is.null(RUTA_SW) && (!is.character(RUTA_SW) ||!file.exists(RUTA_SW))) {
-    stop("Error: RUTA_SW debe ser una ruta válida a un archivo de texto.")
-  }
+  # if (!is.character(RUTA_FL) ||!file.exists(RUTA_FL)) {
+  #   stop("Error: RUTA_FL debe ser una ruta válida a un archivo de texto.")
+  # }
+  # if (!is.null(RUTA_SW) && (!is.character(RUTA_SW) ||!file.exists(RUTA_SW))) {
+  #   stop("Error: RUTA_SW debe ser una ruta válida a un archivo de texto.")
+  # }
   
   #http://www.sthda.com/english/wiki/text-mining-and-word-cloud-fundamentals-in-r-5-simple-steps-you-should-know
   

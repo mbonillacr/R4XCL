@@ -95,3 +95,20 @@ install.packages("https://cran.r-project.org/src/contrib/Archive/ResourceSelecti
 
 # Instalando VGAM
 install.packages("https://cran.r-project.org/src/contrib/Archive/VGAM/VGAM_1.0-5.tar.gz", repos=NULL, dependencies = TRUE)
+
+# Instalando tm
+install.packages("https://cran.r-project.org/src/contrib/Archive/xml2/xml2_1.2.0.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/tm/tm_0.7-3.tar.gz", repos=NULL, dependencies = TRUE)
+
+# Instalando SnowballC
+install.packages("https://cran.r-project.org/src/contrib/Archive/SnowballC/SnowballC_0.5.tar.gz", repos=NULL, dependencies = TRUE)
+
+
+# Instalando wordcloud
+install.packages("https://cran.r-project.org/src/contrib/Archive/RColorBrewer/RColorBrewer_1.1-2.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/wordcloud/wordcloud_2.5.tar.gz", repos=NULL, dependencies = TRUE)
+
+
+library(SnowballC)
+library(wordcloud)
+library(RColorBrewer)
