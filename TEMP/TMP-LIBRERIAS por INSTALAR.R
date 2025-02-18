@@ -123,3 +123,10 @@ install.packages("https://cran.r-project.org/src/contrib/Archive/xts/xts_0.10-2.
 install.packages("https://cran.r-project.org/src/contrib/Archive/quadprog/quadprog_1.5-5.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/PerformanceAnalytics/PerformanceAnalytics_1.5.2.tar.gz", repos=NULL, dependencies = TRUE)
 
+# Instalando DPLYR ('assertthat', 'bindrcpp', 'glue', 'pkgconfig', 'tibble', 'tidyselect', 'plogr' )
+install.packages("https://cran.r-project.org/src/contrib/Archive/assertthat/assertthat_0.2.0.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/bindr/bindr_0.1.1.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/plogr/plogr_0.1-1.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/bindrcpp/bindrcpp_0.2.2.tar.gz", repos=NULL, dependencies = TRUE)
+
+install.packages("https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_0.7.5.tar.gz", repos=NULL, dependencies = TRUE)
