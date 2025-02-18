@@ -13,18 +13,18 @@ FX_Distancias <- function(SetDatosX,
     #-------------------------->>>   
     # VALIDACIONES
     #-------------------------->>>  
-    if (!is.data.frame(SetDatosX)) {
-      stop("Error: SetDatosX debe ser un data frame.")
-    }
-    if (!is.numeric(pEscalaDatos) || pEscalaDatos < 0 || pEscalaDatos > 1) {
-      stop("Error: pEscalaDatos debe ser 0 o 1.")
-    }
-    if (!is.numeric(pTipoDistancia) || pTipoDistancia < 1 || pTipoDistancia > 6) {
-      stop("Error: pTipoDistancia debe ser un número entre 1 y 6.")
-    }
-    if (!is.numeric(pPotenciaMinkowski) || pPotenciaMinkowski <= 0) {
-      stop("Error: pPotenciaMinkowski debe ser un número positivo.")
-    }
+    # if (!is.data.frame(SetDatosX)) {
+    #   stop("Error: SetDatosX debe ser un data frame.")
+    # }
+    # if (!is.numeric(pEscalaDatos) || pEscalaDatos < 0 || pEscalaDatos > 1) {
+    #   stop("Error: pEscalaDatos debe ser 0 o 1.")
+    # }
+    # if (!is.numeric(pTipoDistancia) || pTipoDistancia < 1 || pTipoDistancia > 6) {
+    #   stop("Error: pTipoDistancia debe ser un número entre 1 y 6.")
+    # }
+    # if (!is.numeric(pPotenciaMinkowski) || pPotenciaMinkowski <= 0) {
+    #   stop("Error: pPotenciaMinkowski debe ser un número positivo.")
+    # }
   
     #-------------------------->>>   
     # [1] PREPARACION DE DATOS Y PARAMETROS  
@@ -104,18 +104,18 @@ FX_AleatorioUniforme <- function(
     #-------------------------->>>   
     # VALIDACIONES
     #-------------------------->>>  
-    if (!is.numeric(N) || N <= 0) {
-      stop("Error: N debe ser un número positivo.")
-    }
-    if (!is.numeric(Min) ||!is.numeric(Max) || Min >= Max) {
-      stop("Error: Min debe ser menor que Max.")
-    }
-    if (!is.null(Semilla) &&!is.numeric(Semilla)) {
-      stop("Error: Semilla debe ser un número.")
-    }
-    if (!is.numeric(Histograma) || Histograma < 0 || Histograma > 1) {
-      stop("Error: Histograma debe ser 0 o 1.")
-    }
+    # if (!is.numeric(N) || N <= 0) {
+    #   stop("Error: N debe ser un número positivo.")
+    # }
+    # if (!is.numeric(Min) ||!is.numeric(Max) || Min >= Max) {
+    #   stop("Error: Min debe ser menor que Max.")
+    # }
+    # if (!is.null(Semilla) &&!is.numeric(Semilla)) {
+    #   stop("Error: Semilla debe ser un número.")
+    # }
+    # if (!is.numeric(Histograma) || Histograma < 0 || Histograma > 1) {
+    #   stop("Error: Histograma debe ser 0 o 1.")
+    # }
     
   #--------------------------   
   # PREPARACION DE PARAMETROS  
@@ -179,19 +179,19 @@ FX_AleatorioNormal <- function(
   #--------------------------   
   # VALIDACIONES
   #--------------------------
-  
-  if (!is.numeric(N) || N <= 0) {
-    stop("Error: N debe ser un número positivo.")
-  }
-  if (!is.numeric(Mu) ||!is.numeric(Sigma) || Sigma <= 0) {
-    stop("Error: Sigma debe ser un número positivo.")
-  }
-  if (!is.null(Semilla) &&!is.numeric(Semilla)) {
-    stop("Error: Semilla debe ser un número.")
-  }
-  if (!is.numeric(Histograma) || Histograma < 0 || Histograma > 1) {
-    stop("Error: Histograma debe ser 0 o 1.")
-  }
+  # 
+  # if (!is.numeric(N) || N <= 0) {
+  #   stop("Error: N debe ser un número positivo.")
+  # }
+  # if (!is.numeric(Mu) ||!is.numeric(Sigma) || Sigma <= 0) {
+  #   stop("Error: Sigma debe ser un número positivo.")
+  # }
+  # if (!is.null(Semilla) &&!is.numeric(Semilla)) {
+  #   stop("Error: Semilla debe ser un número.")
+  # }
+  # if (!is.numeric(Histograma) || Histograma < 0 || Histograma > 1) {
+  #   stop("Error: Histograma debe ser 0 o 1.")
+  # }
   
   #--------------------------   
   # PREPARACION DE PARAMETROS  
@@ -242,25 +242,23 @@ FX_Muestreo = function(SetDatos, Semilla, Porc_Muestral, TipoOutput=0)
   #--------------------------   
   # VALIDACIONES
   #--------------------------
-  
-  if (!is.data.frame(SetDatos)) {
-    stop("Error: SetDatos debe ser un data frame.")
-  }
-  if (!is.numeric(Semilla)) {
-    stop("Error: Semilla debe ser un número.")
-  }
-  if (!is.numeric(Porc_Muestral) || Porc_Muestral <= 0 || Porc_Muestral >= 1) {
-    stop("Error: Porc_Muestral debe ser un número entre 0 y 1.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 1) {
-    stop("Error: TipoOutput debe ser 0 o 1.")
-  }
+  # 
+  # if (!is.data.frame(SetDatos)) {
+  #   stop("Error: SetDatos debe ser un data frame.")
+  # }
+  # if (!is.numeric(Semilla)) {
+  #   stop("Error: Semilla debe ser un número.")
+  # }
+  # if (!is.numeric(Porc_Muestral) || Porc_Muestral <= 0 || Porc_Muestral >= 1) {
+  #   stop("Error: Porc_Muestral debe ser un número entre 0 y 1.")
+  # }
+  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 1) {
+  #   stop("Error: TipoOutput debe ser 0 o 1.")
+  # }
   
   #--------------------------   
   # PREPARACION DE DATOS Y PARAMETROS  
   #--------------------------
-  
-  library(stargazer)
   
   DT <- R4XCL_INT_DATOS(SetDatosX=SetDatos)
   DT <- data.frame(DT)

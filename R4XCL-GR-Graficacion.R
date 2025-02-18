@@ -12,15 +12,15 @@ GR_Graficos.D <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
-  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
-    stop("Error: SetDatosY debe ser un data frame.")
-  }
+  # if (missing(SetDatosX)) {
+  #   stop("Error: SetDatosX es un parámetro obligatorio.")
+  # }
+  # if (!is.data.frame(SetDatosX)) {
+  #   stop("Error: SetDatosX debe ser un data frame.")
+  # }
+  # if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
+  #   stop("Error: SetDatosY debe ser un data frame.")
+  # }
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -33,15 +33,15 @@ GR_Graficos.D <- function(
   #-------------------------->>>  
 
   FX <- R4XCL_INT_FUNCION(
-                        SetDatosX,
-                        SetDatosY
-                        )
+                          SetDatosX,
+                          SetDatosY
+                          )
 
   DT <- R4XCL_INT_DATOS(
-                      SetDatosY=SetDatosY,                   
-                      SetDatosX=SetDatosX,
-                      Categorica=Categorica
-                      )
+                        SetDatosY=SetDatosY,                   
+                        SetDatosX=SetDatosX,
+                        Categorica=Categorica
+                        )
   
   Procedimientos<-R4XCL_INT_PROCEDIMIENTOS()
   
@@ -123,7 +123,7 @@ GR_Graficos.D <- function(
   
 }
 
-DialogosXCL=R4XCL_INT_DIALOGOS()
+DialogosXCL <- R4XCL_INT_DIALOGOS()
 attr(GR_Graficos.D, DialogosXCL$Descripcion) = 
   list(
         Detalle     = DialogosXCL$Detalle.KM,

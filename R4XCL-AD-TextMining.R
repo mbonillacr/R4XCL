@@ -2,7 +2,8 @@
 # TEXT MINING                                          +
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-TM_TextMining <- function(RUTA_FL=NULL,
+TM_TextMining <- function(
+                          RUTA_FL=NULL,
                           RUTA_SW=NULL,
                           MAXWORDS=200, 
                           QPALABRASRESUMEN=100,

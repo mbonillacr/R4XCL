@@ -14,30 +14,30 @@ AD_KMedias.C <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
-  if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
-    stop("Error: Escala debe ser 0 o 1.")
-  }
-  if (!is.numeric(K) || K <= 0) {
-    stop("Error: K debe ser un número positivo.")
-  }
-  if (!is.numeric(Koptimo) || Koptimo <= 0) {
-    stop("Error: Koptimo debe ser un número positivo.")
-  }
-  if (!is.numeric(Semilla)) {
-    stop("Error: Semilla debe ser un número.")
-  }
-  if (!is.numeric(TipoModelo) || TipoModelo < 1 || TipoModelo > 4) {
-    stop("Error: TipoModelo debe ser un número entre 1 y 4.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 9) {
-    stop("Error: TipoOutput debe ser un número entre 0 y 9.")
-  }
+  # if (missing(SetDatosX)) {
+  #   stop("Error: SetDatosX es un parámetro obligatorio.")
+  # }
+  # if (!is.data.frame(SetDatosX)) {
+  #   stop("Error: SetDatosX debe ser un data frame.")
+  # }
+  # if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
+  #   stop("Error: Escala debe ser 0 o 1.")
+  # }
+  # if (!is.numeric(K) || K <= 0) {
+  #   stop("Error: K debe ser un número positivo.")
+  # }
+  # if (!is.numeric(Koptimo) || Koptimo <= 0) {
+  #   stop("Error: Koptimo debe ser un número positivo.")
+  # }
+  # if (!is.numeric(Semilla)) {
+  #   stop("Error: Semilla debe ser un número.")
+  # }
+  # if (!is.numeric(TipoModelo) || TipoModelo < 1 || TipoModelo > 4) {
+  #   stop("Error: TipoModelo debe ser un número entre 1 y 4.")
+  # }
+  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 9) {
+  #   stop("Error: TipoOutput debe ser un número entre 0 y 9.")
+  # }
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -202,27 +202,27 @@ AD_KmediasClasificar = function(SetDatosPredecir,
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(SetDatosPredecir)) {
-    stop("Error: SetDatosPredecir es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosPredecir)) {
-    stop("Error: SetDatosPredecir debe ser un data frame.")
-  }
-  if (is.null(Centroides)) {
-    stop("Error: Centroides es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(Centroides)) {
-    stop("Error: Centroides debe ser un data frame.")
-  }
-  if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
-    stop("Error: Escala debe ser 0 o 1.")
-  }
-  if (!is.numeric(FactorMu)) {
-    stop("Error: FactorMu debe ser un número.")
-  }
-  if (!is.numeric(FactorSigma) || FactorSigma <= 0) {
-    stop("Error: FactorSigma debe ser un número positivo.")
-  }
+  # if (missing(SetDatosPredecir)) {
+  #   stop("Error: SetDatosPredecir es un parámetro obligatorio.")
+  # }
+  # if (!is.data.frame(SetDatosPredecir)) {
+  #   stop("Error: SetDatosPredecir debe ser un data frame.")
+  # }
+  # if (is.null(Centroides)) {
+  #   stop("Error: Centroides es un parámetro obligatorio.")
+  # }
+  # if (!is.data.frame(Centroides)) {
+  #   stop("Error: Centroides debe ser un data frame.")
+  # }
+  # if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
+  #   stop("Error: Escala debe ser 0 o 1.")
+  # }
+  # if (!is.numeric(FactorMu)) {
+  #   stop("Error: FactorMu debe ser un número.")
+  # }
+  # if (!is.numeric(FactorSigma) || FactorSigma <= 0) {
+  #   stop("Error: FactorSigma debe ser un número positivo.")
+  # }
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS

@@ -1,9 +1,9 @@
 # Ejemplo de uso:
 nombres_paquetes <- c(
                     
-                      #Instalando SVDIALOGS
+                      # #Instalando SVDIALOGS
                       "svMisc_1.0-1.tar.gz", "svGUI_0.9-55.tar.gz", "svDialogs_0.9-50.tar.gz"#,
-                    
+                      #
                       # #Instalando DEVTOOLS
                       # "R6_2.2.2.tar.gz","openssl_1.0.1.tar.gz","httr_1.3.1.tar.gz",
                       # "digest_0.6.15.tar.gz","digest_0.6.15.tar.gz","whisker_0.3-2.tar.gz",
@@ -30,8 +30,19 @@ nombres_paquetes <- c(
                       # "pbapply_1.3-4.tar.gz","data.table_1.11.2.tar.gz","prediction_0.3.2.tar.gz",
                       # "margins_0.3.0.tar.gz","ResourceSelection_0.3-2.tar.gz",
                       # 
-                      # # Instalando VGAM
-                      # "VGAM_1.0-5.tar.gz"
+                      # # Instalando TM
+                      # "VGAM_1.0-5.tar.gz",
+                      #
+                      # "xml2_1.2.0.tar.gz","tm_0.7-3.tar.gz",
+                      #
+                      # # Instalando SnowballC
+                      # "SnowballC_0.7.1.tar.gz",
+                      #
+                      # # Instalando SnowballC
+                      # "RColorBrewer_1.1-2.tar.gz", "wordcloud_2.5.tar.gz",
+                      #
+                      # # Instalando Performance Analytics
+                      #
                       
                       )  
 
@@ -100,15 +111,15 @@ install.packages("https://cran.r-project.org/src/contrib/Archive/VGAM/VGAM_1.0-5
 install.packages("https://cran.r-project.org/src/contrib/Archive/xml2/xml2_1.2.0.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/tm/tm_0.7-3.tar.gz", repos=NULL, dependencies = TRUE)
 
-# Instalando SnowballC
-install.packages("https://cran.r-project.org/src/contrib/Archive/SnowballC/SnowballC_0.5.tar.gz", repos=NULL, dependencies = TRUE)
-
+# Instalando Snowball
+install.packages("https://cran.r-project.org/src/contrib/SnowballC_0.7.1.tar.gz", repos=NULL, dependencies = TRUE)
 
 # Instalando wordcloud
 install.packages("https://cran.r-project.org/src/contrib/Archive/RColorBrewer/RColorBrewer_1.1-2.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/wordcloud/wordcloud_2.5.tar.gz", repos=NULL, dependencies = TRUE)
 
+# Instalando Performance Analytics
+install.packages("https://cran.r-project.org/src/contrib/Archive/xts/xts_0.10-2.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/quadprog/quadprog_1.5-5.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/PerformanceAnalytics/PerformanceAnalytics_1.5.2.tar.gz", repos=NULL, dependencies = TRUE)
 
-library(SnowballC)
-library(wordcloud)
-library(RColorBrewer)
