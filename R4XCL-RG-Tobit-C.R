@@ -57,8 +57,8 @@ MR_Tobit.C <- function(
   library(VGAM)
   
   FX <- R4XCL_INT_FUNCION(SetDatosX,SetDatosY)
-  especificacion <- eval(parse(text=FX))
   
+  especificacion <- eval(parse(text=FX))
   Procedimientos <- R4XCL_INT_PROCEDIMIENTOS()
   
   DT <- R4XCL_INT_DATOS(

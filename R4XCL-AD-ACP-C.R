@@ -16,10 +16,10 @@ AD_ACP.C <- function(
   #-------------------------->>>   
   # VALIDACIONES
   #-------------------------->>>  
-  
-  if (!is.data.frame(SetDatosX)) {
-                                  stop("Error: SetDatosX debe ser un data frame.")
-                                 }
+  #  
+  # if (!is.data.frame(SetDatosX)) {
+  #                                 stop("Error: SetDatosX debe ser un data frame.")
+  #                                }
 
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
