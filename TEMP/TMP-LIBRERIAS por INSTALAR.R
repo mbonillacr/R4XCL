@@ -42,7 +42,13 @@ nombres_paquetes <- c(
                       # "RColorBrewer_1.1-2.tar.gz", "wordcloud_2.5.tar.gz",
                       #
                       # # Instalando Performance Analytics
+                      # "xts_0.10-2.tar.gz", "quadprog_1.5-5.tar.gz","PerformanceAnalytics_1.5.2.tar.gz",
                       #
+                      # # Instalando RLANG
+                      # "rlang_0.2.0.tar.gz",
+                      #
+                      # # Instalando FS
+                      # "fs_1.2.2.tar.gz"
                       
                       )  
 
@@ -123,10 +129,26 @@ install.packages("https://cran.r-project.org/src/contrib/Archive/xts/xts_0.10-2.
 install.packages("https://cran.r-project.org/src/contrib/Archive/quadprog/quadprog_1.5-5.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/PerformanceAnalytics/PerformanceAnalytics_1.5.2.tar.gz", repos=NULL, dependencies = TRUE)
 
+# RLANG
+install.packages("https://cran.r-project.org/src/contrib/Archive/rlang/rlang_0.2.0.tar.gz", repos=NULL, dependencies = TRUE)
+
 # Instalando DPLYR ('assertthat', 'bindrcpp', 'glue', 'pkgconfig', 'tibble', 'tidyselect', 'plogr' )
 install.packages("https://cran.r-project.org/src/contrib/Archive/assertthat/assertthat_0.2.0.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/bindr/bindr_0.1.1.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/plogr/plogr_0.1-1.tar.gz", repos=NULL, dependencies = TRUE)
 install.packages("https://cran.r-project.org/src/contrib/Archive/bindrcpp/bindrcpp_0.2.2.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/glue/glue_1.2.0.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/pkgconfig/pkgconfig_2.0.2.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/cli/cli_1.0.0.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/utf8/utf8_1.1.3.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/pillar/pillar_1.2.2.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/tibble/tibble_1.4.1.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/purrr/purrr_0.2.4.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/tidyselect/tidyselect_0.2.4.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/plogr_0.2.0.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/lazyeval/lazyeval_0.2.1.tar.gz", repos=NULL, dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/DBI/DBI_0.8.tar.gz", repos=NULL, dependencies = TRUE)
+# NO FUE POSIBLE: install.packages("https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_0.1.1.tar.gz", repos=NULL, dependencies = TRUE)
 
-install.packages("https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_0.7.5.tar.gz", repos=NULL, dependencies = TRUE)
+# FS
+install.packages("https://cran.r-project.org/src/contrib/Archive/fs/fs_1.2.2.tar.gz", repos=NULL, dependencies = TRUE)
