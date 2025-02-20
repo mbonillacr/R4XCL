@@ -699,44 +699,43 @@ R4XCL_INT_CREAXCL <- function(pModelo)
 
 }
 
-R4XCL_INSTALAR_PAQUETES <- function(nombres_paquetes, directorio_paquetes) {
-  for (nombre_archivo in nombres_paquetes) {
-    # Extraer el nombre del paquete del nombre del archivo (antes del primer "_")
-    nombre_paquete <- sub("_.+", "", nombre_archivo)
-    
-    # Construir la ruta al archivo del paquete
-    ruta_paquete <- file.path(directorio_paquetes, nombre_archivo)
-    
-    if (!file.exists(ruta_paquete)) {
-      cat("Error: No se encontró el paquete", nombre_archivo, "en el directorio especificado.\n")
-      return(FALSE)  # Detener la instalación si falta un paquete
-    }
-    
-    # Instalar el paquete
-    tryCatch({
-      install.packages(
-                       ruta_paquete, 
-                       repos = NULL, 
-                       type = "source",,
-                       verbose = FALSE,  # Suprimir mensajes detallados
-                       quiet = TRUE     # Mostrar advertencias y errores
-                       )
-      cat("El paquete", nombre_paquete, "se instaló correctamente.\n")
-      
-    }, error = function(e) {
-      cat("Error al instalar el paquete", nombre_paquete, ":", e$message, "\n")
-      return(FALSE)  # Detener la instalación si hay un error
-    })
-    
-    # Cargar el paquete
-    tryCatch({
-      library(nombre_paquete)
-      cat("El paquete", nombre_paquete, "se cargó correctamente.\n")
-      
-    }, error = function(e) {
-      #cat("Error al cargar el paquete", nombre_paquete, ":", e$message, "\n")
-      #return(FALSE)  # Detener la instalación si hay un error
-    })
-  }
-  TRUE
-}
+# R4XCL_INSTALAR_PAQUETES <- function(nombres_paquetes, directorio_paquetes) {
+#   for (nombre_archivo in nombres_paquetes) {
+# 
+#     nombre_paquete <- sub("_.+", "", nombre_archivo)                   # Extraer el nombre del paquete del nombre del archivo (antes del primer "_")
+#     ruta_paquete <- file.path(directorio_paquetes, nombre_archivo)     # Construir la ruta al archivo del paquete
+#     
+# 
+#     if (!file.exists(ruta_paquete)) {
+#       cat("Error: No se encontró el paquete", nombre_archivo, "en el directorio especificado.\n")
+#       return(FALSE)  # Detener la instalación si falta un paquete
+#     }
+#     
+#     # Instalar el paquete
+#     tryCatch({
+#       install.packages(
+#                        ruta_paquete, 
+#                        repos = NULL, 
+#                        type = "source",
+#                        verbose = FALSE,  # Suprimir mensajes detallados
+#                        quiet = TRUE      # Mostrar advertencias y errores
+#                        )
+#       cat("El paquete", nombre_paquete, "se instaló correctamente.\n")
+#       
+#     }, error = function(e) {
+#       cat("Error al instalar el paquete", nombre_paquete, ":", e$message, "\n")
+#       return(FALSE)  # Detener la instalación si hay un error
+#     })
+#     
+#     # Cargar el paquete
+#     tryCatch({
+#       library(nombre_paquete)
+#       cat("El paquete", nombre_paquete, "se cargó correctamente.\n")
+#       
+#     }, error = function(e) {
+#       #cat("Error al cargar el paquete", nombre_paquete, ":", e$message, "\n")
+#       #return(FALSE)  # Detener la instalación si hay un error
+#     })
+#   }
+#   TRUE
+# }

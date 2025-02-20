@@ -2,38 +2,38 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
 {
   Reg_PanelData <- 
     c(
-      "[ 1] Estimacion Datos de Panel", 
-      "[ 2] Efectos Fijos para INDIVIDUOS",
-      "[ 3] Test de Efectos Fijos para INDIVIDUOS",
-      "[ 4] Test de Haussman para efectos aleatorios",
-      "[ 5] Efectos Fijos para TIEMPO",
-      "[ 6] Test de Breush-Pagan para efectos aleatorios en [t]",
-      "[ 7] Test de Breush-Pagan para efectos aleatorios en [i]",
-      "[ 8] Test de Breush-Pagan para efectos aleatorios en [t,i]",
-      "[ 9] Test de Breush-Pagan para efectos aleatorios",
+      "[01] Estimacion Datos de Panel", 
+      "[02] Efectos Fijos para INDIVIDUOS",
+      "[03] Test de Efectos Fijos para INDIVIDUOS",
+      "[04] Test de Haussman para efectos aleatorios",
+      "[05] Efectos Fijos para TIEMPO",
+      "[06] Test de Breush-Pagan para efectos aleatorios en [t]",
+      "[07] Test de Breush-Pagan para efectos aleatorios en [i]",
+      "[08] Test de Breush-Pagan para efectos aleatorios en [t,i]",
+      "[09] Test de Breush-Pagan para efectos aleatorios",
       "[10] Test de Breush-Pagan para correlaci?n contemporanea",
       "[11] Test de Pesaran para correlaci?n contemporanea",
       "[12] Test de correlacion serial",
       "[13] Test de raiz unitaria", 
       "[14] Especificaci?n empleada",
       "[15] Guardar Modelo Estimado en RDS"
-    )
+     )
   
   Reg_Lineal <- 
     c(
-      "[1] Estimar Modelo de Regresi?n Lineal",
-      "[2] Estimar valores para la [Y] (dentro de muestra)",
-      "[3] Estimar valores para la [Y] (fuera de muestra)",
-      "[4] Obtener efectos marginales",
-      "[5] Calcular coeficiente de Inflaci?n de Varianza VIF",
-      "[6] Test de heterocedasticidad Breusch-Pagan", 
-      "[7] Estimaci?n robusta de coeficientes",
-      "[8] Identificar observaciones de influencia en la muestra",
-      "[9] Especificaci?n empleada",
+      "[01] Estimar Modelo de Regresi?n Lineal",
+      "[02] Estimar valores para la [Y] (dentro de muestra)",
+      "[03] Estimar valores para la [Y] (fuera de muestra)",
+      "[04] Obtener efectos marginales",
+      "[05] Calcular coeficiente de Inflaci?n de Varianza VIF",
+      "[06] Test de heterocedasticidad Breusch-Pagan", 
+      "[07] Estimaci?n robusta de coeficientes",
+      "[08] Identificar observaciones de influencia en la muestra",
+      "[09] Especificaci?n empleada",
       "[10] Guardar Modelo Estimado en R",
       "[11] Modelo estimado con formato original de R",
       "[12] Obtener residuos estimados"
-    )
+     )
   
   Reg_Binaria <-  
     c(
@@ -45,7 +45,7 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
       "[6] ANOVA",
       "[7] Especificaci?n empleada",
       "[8] Guardar Modelo Estimado en R"
-    )
+     )
   
   Reg_Tobit <-  
     c(
@@ -63,16 +63,16 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
       "[3] Estimar [Y] (fuera de muestra)",
       "[4] Especificaci?n empleada",
       "[5] Guardar Modelo Estimado en R"
-    )
+     )
   
   Reg_Arboles <- 
     c(
-      "[1] Estimar Modelo de Arboles de Decisi?n",
-      "[2] Estimar [Y] (dentro de muestra)",
-      "[3] Estimar [Y] (fuera de muestra)",
-      "[4] Especificaci?n empleada",
-      "[5] Guardar Modelo Estimado en R"
-    )
+        "[1] Estimar Modelo de Arboles de Decisi?n",
+        "[2] Estimar [Y] (dentro de muestra)",
+        "[3] Estimar [Y] (fuera de muestra)",
+        "[4] Especificaci?n empleada",
+        "[5] Guardar Modelo Estimado en R"
+     )
   
   AD_KMedias <-  
     c(
@@ -87,51 +87,69 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
   
   AD_ACP <- 
     c(
-      "[1] Matriz de Correlaciones",
-      "[2] Matriz de Covarianza",
-      "[3] Gr?fico de Correlaciones",
-      "[4] Componentes Principales",
-      "[5] Coordenadas de Individuos",
-      "[6] COS^2 de Individuos",
-      "[7] Contribuci?n de individuos",
-      "[8] Aporte a la Varianza del CP(i)",
-      "[9] COS^2 de variables",
-      "[10] Contribuci?n de variables",
-      "[11] Predicci?n fuera de muestra",
-      "[12] Gr?fico Biplot"
-    )
+        "[01] Matriz de Correlaciones",
+        "[02] Matriz de Covarianza",
+        "[03] Gráfico de Correlaciones",
+        "[04] Componentes Principales",
+        "[05] Coordenadas de Individuos",
+        "[06] COS^2 de Individuos",
+        "[07] Contribución de individuos",
+        "[08] Aporte a la Varianza del CP(i)",
+        "[09] COS^2 de variables",
+        "[10] Contribución de variables",
+        "[11] Predicción fuera de muestra",
+        "[12] Gráfico Biplot"
+      )
   
   Mat_Algebra <-  
     c(
-      "[1] Factorizaci?n de Cholesky",
-      "[2] Valores propios",
-      "[3] Vectores propios",
-      "[4] Decomposici?n QR",
-      "[5] Matriz Inversa",
-      "[6] Singular Value Decomposition",
-      "[7] Diagonal de la matriz",
-      "[8] Matriz Transpuesta"
-    )
+        "[1] Factorizaci?n de Cholesky",
+        "[2] Valores propios",
+        "[3] Vectores propios",
+        "[4] Decomposici?n QR",
+        "[5] Matriz Inversa",
+        "[6] Singular Value Decomposition",
+        "[7] Diagonal de la matriz",
+        "[8] Matriz Transpuesta"
+     )
   
   Computo_Vars <-
     list(
-      "[1] Crea variables Dummies",
-      "[2] Centrar y/o estandarizar conjunto de Datos",
-      "[3] Computar Distancias (Euclideana, M?ximo, Canberra, Binaria)"
-    )
+          "[1] Crea variables Dummies",
+          "[2] Centrar y/o estandarizar conjunto de Datos",
+          "[3] Computar Distancias (Euclideana, Máximo, Canberra, Binaria)"
+        )
   
   Graficacion <-
     list(
-      "[1] BoxPlot",
-      "[2] EN PROCESO",
-      "[3] EN PROCESO",
-      "[4] EN PROCESO",
-      "[5] EN PROCESO",
-      "[6] EN PROCESO",
-      "[7] EN PROCESO",
-      "[8] EN PROCESO",
-      "[9] EN PROCESO"
-    )
+          "[1] BoxPlot",
+          "[2] EN PROCESO",
+          "[3] EN PROCESO",
+          "[4] EN PROCESO",
+          "[5] EN PROCESO",
+          "[6] EN PROCESO",
+          "[7] EN PROCESO",
+          "[8] EN PROCESO",
+          "[9] EN PROCESO"
+        )
+  
+  Instalacion <-
+    list(
+          "[01] SVDIALOGS",
+          "[02] DEVTOOLS",
+          "[03] WORLDMAP",
+          "[04] STARGAZER",
+          "[05] PLM",
+          "[06] RPART",
+          "[07] RESOURCE SELECTION",
+          "[08] TM",
+          "[09] SNOWBALLC",
+          "[10] WORLDCLOUD",
+          "[11] PERFORMANCE ANALYTICS",
+          "[12] RLANG",
+          "[13] DUMMIES",
+          "[99] TODOS"
+         )
   
   Procedimientos <- 
     list(
@@ -145,7 +163,8 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
       "ACP"     = AD_ACP,
       "ALGEBRA" = Mat_Algebra,
       "COMPUTOS"= Computo_Vars,
-      "GRAFICA" = Graficacion
+      "GRAFICA" = Graficacion,
+      "INSTALA" = Instalacion
     )
   
   return (Procedimientos)

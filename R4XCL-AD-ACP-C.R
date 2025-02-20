@@ -154,29 +154,28 @@ AD_ACP.C <- function(
     
     if(missing(SetDatosPredecir)){
       
-      OutPut = res.pca$scores
+      OutPut <- res.pca$scores
       
     }else{
       
-      DatosX = SetDatosPredecir[-1,]
-      
-      DatosX = matrix(as.numeric(DatosX), nrow=nrow(DatosX), ncol=p)
-      DatosX = data.frame(DatosX)
+      DatosX <- SetDatosPredecir[-1,]
+      DatosX <- matrix(as.numeric(DatosX), nrow=nrow(DatosX), ncol=p)
+      DatosX <- data.frame(DatosX)
       colnames(DatosX)[1:p]=nombresX[1:p]
       
-      A = predict(res.pca, newdata = ind.sup)
-      OutPut=data.frame("R4XCL_PrediccionFueraDeMuestra"= A)
+      A <- predict(res.pca, newdata = ind.sup)
+      OutPut <- data.frame("R4XCL_PrediccionFueraDeMuestra"= A)
       
     } 
     
   }else if(TipoOutput == 12){    
     
     biplot(res.pca, scale = 0)
-    OutPut="Biplot Ejecutado"
+    OutPut <- "Biplot Ejecutado"
     
   }else if(TipoOutput >12){   
     
-    OutPut = "Revisar par?metros disponibles" 
+    OutPut <- "Revisar parámetros disponibles" 
     
   }  
   
@@ -194,6 +193,6 @@ attr(AD_ACP.C, "description") =
         SetDatosX        = "Datos por Analizar",
         Escala           = "Escalar datos? 1:SI, 0:NO (0:Default)",
         Filtro           = "0:Incluir registro, 1:Excluir registro (0:Default)", 
-        TipoOutput       = "1:Matriz de Correlaci[on, 2:Coordenadas: Variables, 3:Coordenadas: Individuos, 4:COS^2: INDs, 5:Contribuci?n:INDs, 6:Valores Propios, 7:COS^2: VARs, 8:Contribuci?n:VARs, 9:Predicci?n, 10:Gr?fico VARs|INDs", 
+        TipoOutput       = "1:Matriz de Correlación, 2:Coordenadas: Variables, 3:Coordenadas: Individuos, 4:COS^2: INDs, 5:Contribuci?n:INDs, 6:Valores Propios, 7:COS^2: VARs, 8:Contribuci?n:VARs, 9:Predicci?n, 10:Gr?fico VARs|INDs", 
         SetDatosPredecir = "Computar datos fuera de muestra"
       )
