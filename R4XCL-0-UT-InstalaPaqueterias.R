@@ -119,11 +119,11 @@ R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
     
     }else if(TipoOutput == 13){
     
-    #   pFS = c("fs_1.2.2.tar.gz")
-    #   
-    #   OutPut <- pFS
-    #   
-    # }else if(TipoOutput == 14){
+      pFS = c("stargazer_5.2.1.tar.gz")
+
+      OutPut <- pFS
+
+    }else if(TipoOutput == 14){
       
       pDUMMIES = c("dummies_1.5.6.tar.gz")
       

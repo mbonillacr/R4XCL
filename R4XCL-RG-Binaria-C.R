@@ -17,33 +17,7 @@ MR_Binario.C <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (missing(SetDatosY)) {
-  #   stop("Error: SetDatosY es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
-  # if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
-  #   stop("Error: Categorica debe ser 0 o 1.")
-  # }
-  # if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
-  #   stop("Error: Escala debe ser 0 o 1.")
-  # }
-  # if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
-  #   stop("Error: SetDatosPredecir debe ser un data frame.")
-  # }
-  # if (!is.numeric(TipoModelo) || TipoModelo < 0 || TipoModelo > 1) {
-  #   stop("Error: TipoModelo debe ser 0 o 1.")
-  # }
-  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 8) {
-  #   stop("Error: TipoOutput debe ser un número entre 0 y 8.")
-  # }
+
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -54,12 +28,12 @@ MR_Binario.C <- function(
   Procedimientos=R4XCL_INT_PROCEDIMIENTOS()
   
   DT <- R4XCL_INT_DATOS(
-    SetDatosX=SetDatosX,
-    SetDatosY=SetDatosY,
-    Escala=Escala,
-    Filtro=Filtro,
-    Categorica=Categorica
-  )
+                        SetDatosX=SetDatosX,
+                        SetDatosY=SetDatosY,
+                        Escala=Escala,
+                        Filtro=Filtro,
+                        Categorica=Categorica
+                      )
   P  <- ncol(DT)
   
   especificacion <- eval(parse(text=FX))
@@ -87,7 +61,7 @@ MR_Binario.C <- function(
     OutPut <- Procedimientos$BINARIO 
     
   }else if(TipoOutput == 1){ 
-    
+    library(stargazer)
     OutPut <- data.frame("R4XCL_ModeloEstimado"= stargazer(Modelo, 
                                                           type="text", 
                                                           ci=TRUE, 
