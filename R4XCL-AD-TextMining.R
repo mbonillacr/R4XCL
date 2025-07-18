@@ -11,26 +11,17 @@ TM_TextMining <- function(
                           TipoOutput=0
                           )
 {
-  
-  #-------------------------->>>   
-  # VALIDACIONES
-  #-------------------------->>>  
-  # if (!is.character(RUTA_FL) ||!file.exists(RUTA_FL)) {
-  #   stop("Error: RUTA_FL debe ser una ruta válida a un archivo de texto.")
-  # }
-  # if (!is.null(RUTA_SW) && (!is.character(RUTA_SW) ||!file.exists(RUTA_SW))) {
-  #   stop("Error: RUTA_SW debe ser una ruta válida a un archivo de texto.")
-  # }
-  
   #http://www.sthda.com/english/wiki/text-mining-and-word-cloud-fundamentals-in-r-5-simple-steps-you-should-know
   
   library(tm)
   library(SnowballC)
   library(wordcloud)
   library(RColorBrewer)
-  
   require(svDialogs)
   require(tcltk)
+  
+  #print(file.choose(new = FALSE))
+
   
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
@@ -38,13 +29,6 @@ TM_TextMining <- function(
   
   set.seed(123456)
 
-  DIR_ORIG  = "~/BERT2/functions/INTERNO/"
-  ARCHIVO   = paste0(DIR_ORIG,"R4XCL-INTERNO.R")
-
-  source(file.path(ARCHIVO))
-  
-  #ListaFunciones = c("Resumen de Datos", "Selecci?n Muestral", "POR LLENAR CON ALGUN METODO")
-  #TipoDialogo    = c("ok", "okcancel", "yesno", "yesnocancel")
   IDIOMA         = c("spanish","english")
   
   #-------------------------->>> 
@@ -87,7 +71,6 @@ TM_TextMining <- function(
   dtm <- TermDocumentMatrix(docs)
   m   <- as.matrix(dtm)
   v   <- sort(rowSums(m),decreasing=TRUE)
-  
   d   <- data.frame(word = names(v),freq=v)
   
   #-------------------------->>> 
@@ -95,8 +78,13 @@ TM_TextMining <- function(
   #-------------------------->>> 
   
   if (TipoOutput == 0){
-
-    OutPut = "Ver Gráfico"
+    
+    OutPut = "WordCloud"
+  
+  }else if(TipoOutput == 1){   
+    
+    BERT.graphics.device(cell=T);
+    OutPut = "Word Cloud";
     wordcloud(
               words = d$word, 
               freq = d$freq, 
@@ -105,15 +93,18 @@ TM_TextMining <- function(
               random.order=FALSE, 
               rot.per=0.35, 
               colors=brewer.pal(8, "Dark2")
-              )
+              );
+    
+    dev.off();
+    T;
 
-  }else if(TipoOutput == 1){   
+  }else if(TipoOutput == 2){   
     
     OutPut = head(d, QPALABRASRESUMEN) 
     
-  }else if(TipoOutput == 2){   
+  }else if(TipoOutput == 3){   
   
-    OutPut = "Ver Gráfico"
+    OutPut = "Word Cloud"
     
     barplot(
             d[1:10,]$freq, 
@@ -124,7 +115,7 @@ TM_TextMining <- function(
             ylab = "Frecuencia"
            )
     
-  }else if(TipoOutput == 3){   
+  }else if(TipoOutput == 4){   
   
     OutPut = findFreqTerms(dtm, lowfreq = 4)
     
