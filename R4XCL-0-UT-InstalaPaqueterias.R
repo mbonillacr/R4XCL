@@ -129,7 +129,14 @@ R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
       
       OutPut <- pDUMMIES  
     
-    }else if(TipoOutput == -1){
+    }else if(TipoOutput == 15){
+      
+      pWOOLDRIDGE = c("wooldridge_1.0.1.tar.gz")
+      
+      OutPut <- pWOOLDRIDGE  
+      
+      
+    }else if(TipoOutput == 999){
      
       OutPut <- union(
                      pSVDIALOGS,
@@ -144,7 +151,9 @@ R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
                      pWORDCLUD,
                      pPERFORMANCE_ANALYTICS,
                      pRLANG,
-                     pFS
+                     pFS,
+                     pDUMMIES,
+                     pWOOLDRIDGE
                    )
     }  
 

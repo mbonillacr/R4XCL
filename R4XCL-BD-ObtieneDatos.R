@@ -1,4 +1,4 @@
-DS_ObtenerDatos <- function()
+DS_ObtenerDatos <- function(pTotalPaquetes)
     
   {
   
@@ -19,8 +19,10 @@ DS_ObtenerDatos <- function()
     #-------------------------->>>  
   
     DS <- R4XCL_INT_POR_INSTALAR()
-      A <- dlg_list(DS,title="SELECCIONAR PAQUETE",preselect = 'wooldridge')
-      pPaquete=A$res
+      #A <- dlg_list(DS,title="SELECCIONAR PAQUETE",preselect = 'wooldridge')
+      #pPaquete=A$res
+
+      pPaquete='wooldridge'
   
       DS <- R4XCL_INT_LISTA_DATASETS(pPaquete)
       if (length(DS) == 0) {

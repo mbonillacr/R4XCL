@@ -67,12 +67,46 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
   
   Reg_Arboles <- 
     c(
-        "[1] Estimar Modelo de Arboles de Decisi?n",
+        "[1] Estimar Modelo de Arboles de Decisión",
         "[2] Estimar [Y] (dentro de muestra)",
         "[3] Estimar [Y] (fuera de muestra)",
         "[4] Especificación empleada",
         "[5] Guardar Modelo Estimado en R"
      )
+  
+  Reg_SeriesTiempo <- 
+    c(
+      "[1] TEST PHILLIPS-OULIARIS",
+      "[2] TEST ADF", 
+      "[3] TEST PHILLIPS-PERRON", 
+      "[4] TEST JARQUE BERA",
+      "[5] AUTOCORRELACIÓN",
+      "[6] DESCOMPOSICIÓN ST MODELO ADITIVO",
+      "[7] DESCOMPOSICIÓN ST MODELO MULTIPLICATIVO"
+    )  
+  
+  Reg_SeriesTiempo_F <- 
+    c(
+      "[1] Hodrick-Prescott",
+      "[2] Baxter-King", 
+      "[3] Christiano-Fitzgerald", 
+      "[4] Butterworth",
+      "[5] Trigonometric regression"
+    ) 
+  
+  Reg_AutoRegresivo <- 
+    c(
+      "[1] ARMA",
+      "[1.1] PREDICCION ARMA",      
+      "[2] ARIMA",
+      "[2.1] PREDICCION ARiMA",
+      "[3] SARiMA",
+      "[3.1] PREDICCION SARiMA",      
+      "[4] GARCH",
+      "[4.1] PREDICCION GARCH",
+      "[5] E-GARCH",
+      "[5.1] PREDICCION E-GARCH"      
+      ) 
   
   AD_KMedias <-  
     c(
@@ -147,24 +181,29 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
           "[10] WORLDCLOUD",
           "[11] PERFORMANCE ANALYTICS",
           "[12] RLANG",
-          "[13] DUMMIES",
-          "[99] TODOS"
+          "[13] FS",
+          "[14] DUMMIES",
+          "[15] WOOLDRIDGE",
+          "[999] TODOS"
          )
   
   Procedimientos <- 
     list(
-      "PANEL"   = Reg_PanelData, 
-      "LINEAL"  = Reg_Lineal,
-      "BINARIO" = Reg_Binaria,
-      "TOBIT"   = Reg_Tobit,
-      "POISSON" = Reg_Poisson,
-      "ARBOLES" = Reg_Arboles,
-      "KMEDIAS" = AD_KMedias,
-      "ACP"     = AD_ACP,
-      "ALGEBRA" = Mat_Algebra,
-      "COMPUTOS"= Computo_Vars,
-      "GRAFICA" = Graficacion,
-      "INSTALA" = Instalacion
+      "PANEL"    = Reg_PanelData, 
+      "LINEAL"   = Reg_Lineal,
+      "BINARIO"  = Reg_Binaria,
+      "TOBIT"    = Reg_Tobit,
+      "POISSON"  = Reg_Poisson,
+      "ARBOLES"  = Reg_Arboles,
+      "SERIES_T" = Reg_SeriesTiempo,
+      "SERIES_AR"= Reg_AutoRegresivo,
+      "SERIES_F" = Reg_SeriesTiempo_F,
+      "KMEDIAS"  = AD_KMedias,
+      "ACP"      = AD_ACP,
+      "ALGEBRA"  = Mat_Algebra,
+      "COMPUTOS" = Computo_Vars,
+      "GRAFICA"  = Graficacion,
+      "INSTALA"  = Instalacion
     )
   
   return (Procedimientos)

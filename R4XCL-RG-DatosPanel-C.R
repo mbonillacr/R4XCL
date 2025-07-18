@@ -9,37 +9,6 @@ MR_PanelData.C <- function(
 {
   
   #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (missing(SetDatosY)) {
-  #   stop("Error: SetDatosY es un parámetro obligatorio.")
-  # }
-  # if (missing(Variable_i)) {
-  #   stop("Error: Variable_i es un parámetro obligatorio.")
-  # }
-  # if (missing(Variable_t)) {
-  #   stop("Error: Variable_t es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
-  # if (!is.vector(Variable_i)) {
-  #   stop("Error: Variable_i debe ser un vector.")
-  # }
-  # if (!is.vector(Variable_t)) {
-  #   stop("Error: Variable_t debe ser un vector.")
-  # }
-  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 15) {
-  #   stop("Error: TipoOutput debe ser un número entre 0 y 15.")
-  # }
-  
-  #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
   #-------------------------->>>
   

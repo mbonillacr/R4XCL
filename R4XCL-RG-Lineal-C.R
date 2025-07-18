@@ -14,47 +14,11 @@ MR_Lineal.C <- function(
     Ponderadores = NULL
 )
 {
-  
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (missing(SetDatosY)) {
-  #   stop("Error: SetDatosY es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
-  # if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
-  #   stop("Error: Categorica debe ser 0 o 1.")
-  # }
-  # if (!is.numeric(Escala) || Escala < 0 || Escala > 1) {
-  #   stop("Error: Escala debe ser 0 o 1.")
-  # }
-  # if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
-  #   stop("Error: SetDatosPredecir debe ser un data frame.")
-  # }
-  # if (!is.numeric(Constante) || Constante < 0 || Constante > 1) {
-  #   stop("Error: Constante debe ser 0 o 1.")
-  # }
-  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 12) {
-  #   stop("Error: TipoOutput debe ser un número entre 0 y 12.")
-  # }
-  # if (!is.null(Ponderadores) &&!is.vector(Ponderadores)) {
-  #   stop("Error: Ponderadores debe ser un vector.")
-  # }
-  
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
   #-------------------------->>>
   
   library(stargazer)
-  #library(margins)
   
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  

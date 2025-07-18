@@ -1,351 +1,187 @@
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# TEST DE COINTEGRACION
+# SERIES TEMPORALES
+# ( COINTEGRACION,RAIZ UNITARIA, AUTOCORRELACIÓN, ADITIVO, MULTIPLICATIVO )
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-ST_TestCointegracion <- function(
-                                  SetDatosX, 
-                                  Periodicidad=1
-                                )
+ST_SeriesTemporales<- function(SetDatosX,Periodicidad=1, TipoOutPut=0)
 {
   
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
-  if (!is.numeric(Periodicidad) || Periodicidad < 1 || Periodicidad > 4) {
-    stop("Error: Periodicidad debe ser un número entre 1 y 4.")
-  }
+    library(tseries)
   
-  #-------------------------->>>
-  # PREPARACION DE DATOS Y PARAMETROS
-  #-------------------------->>>
-  
-  library(tseries)  #revisar a mayor detalle
-  # library(mFilter)
-  # library(xts)  
-  # library(TTR)   
-  
-  #-------------------------->>>   
-  # [1] PREPARACION DE DATOS Y PARAMETROS  
-  #-------------------------->>>  
-  p        <- ncol(SetDatosX) 
-  nombresX <- paste0(SetDatosX[1,1:p])
-  DatosX   <- SetDatosX[-1,]
-  n        <- nrow(DatosX)-1
-  DatosX   <- matrix(as.numeric(DatosX), nrow=n, ncol=p)
-  DatosXTS <- ts(DatosX)
-
-  #-------------------------->>> 
-  # [2] PROCEDIMIENTO ANALITICO
-  #-------------------------->>> 
-  
-  a <- tseries::po.test(DatosXTS)  
-  
-  #-------------------------->>> 
-  # [3] PREPARACION DE RESULTADOS
-  #-------------------------->>> 
-  
-  OutPut  <- cbind("P-O"=a$statistic,"P-value"=a$p.value, "Lag"=a$parameter)
-
-  #-------------------------->>> 
-  # [4] RESULTADO FINAL
-  #-------------------------->>> 
-  
-  return(OutPut)  
-}
-
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# FIN DE PROCEDIMIENTO                                 +
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Detalle = "Calcula el test de cointegraci?n Phillips-Ouliaris a la Serie introducida"
-
-attr(ST_TestCointegracion, "description" ) = 
-  list( 
-        Detalle,
-        SetDatosX    = "Series de tiempo a las que se busca analizar cointegraci?n",
-        Periodicidad = "Periodicidad de los datos 1: Anual, 2: Semestral, 3: Trimestral 4:Mensual"
-       )
-
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# TEST DE RAIZ UNITARIA DF | PP
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-ST_RaizUnitaria <- function(SetDatosX,Periodicidad=1)
-{
-  
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.vector(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un vector.")
-  }
-  if (!is.numeric(Periodicidad) || Periodicidad < 1 || Periodicidad > 4) {
-    stop("Error: Periodicidad debe ser un número entre 1 y 4.")
-  }
-  
-  #-------------------------->>>
-  # PREPARACION DE DATOS Y PARAMETROS
-  #-------------------------->>>
-  
-  library(tseries)  #revisar a mayor detalle
-  library(mFilter)
-  library(xts)  
-  library(TTR)   
-  #-------------------------->>>   
-  # [1] PREPARACION DE DATOS Y PARAMETROS  
-  #-------------------------->>>  
-  
-  pPeriodicidad <- c(1,2,4,12)
-  SetDatosX     <- na.omit(as.numeric(SetDatosX))  
-  SetDatosX_TS  <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad], 1)
-  
-  #-------------------------->>> 
-  # [2] PROCEDIMIENTO ANALITICO
-  #-------------------------->>> 
-  
-  a <- tseries::adf.test(SetDatosX_TS)                                     
-  b <- tseries::pp.test(SetDatosX_TS) 
-  c <- tseries::kpss.test(SetDatosX_TS)
-  
-  #-------------------------->>> 
-  # [3] PREPARACION DE RESULTADOS
-  #-------------------------->>> 
-  
-  OutPut  <- rbind(
-                  c("DickeyFuller",
-                    "stat"   = a$statistic,
-                    "p-value"= a$p.value, 
-                    "H0"     = a$alternative,
-                    "Lag"    = a$parameter),
-                  
-                  c(
-                    "PhillipePerron",
-                    "stat"   = b$statistic,
-                    "p-value"= b$p.value, 
-                    "H0"     = b$alternative,
-                    "Lag"    = b$parameter),
-                  
-                  c("KPSS",
-                    "stat"   = c$statistic,
-                    "p-value"= c$p.value, 
-                    "H0"     = "stationary",
-                    "Lag"    = c$parameter)
-                )
-  
-  #-------------------------->>> 
-  # [4] RESULTADO FINAL
-  #-------------------------->>> 
-  
-  return(OutPut)  
-}
-
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# FIN DE PROCEDIMIENTO                                 +
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Detalle <- "Calcula los test de ra?z unitaria de Dickey Fuller y Phillips Perron a la Serie introducida"
-
-attr(ST_RaizUnitaria, "description" ) <- 
-  list( 
-        Detalle,
-        SetDatosX       = "Serie de tiempo observada",
-        Periodicidad    = "Periodicidad de los datos 1: Anual, 2: Semestral, 3: Trimestral 4:Mensual"
-      )
-
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# AUTOCORRELOGRAMA
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-ST_Autocorrelacion <- function(
-                              SetDatosX, 
-                              Periodicidad=1
-                              )
-{
-  
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.vector(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un vector.")
-  }
-  if (!is.numeric(Periodicidad) || Periodicidad < 1 || Periodicidad > 4) {
-    stop("Error: Periodicidad debe ser un número entre 1 y 4.")
-  }
-  
-  #-------------------------->>>
-  # PREPARACION DE DATOS Y PARAMETROS
-  #-------------------------->>>
-  
-  library(tseries)
-  library(mFilter)
-  library(xts)  
-  library(TTR)   
-  
-  #-------------------------->>>   
-  # [1] PREPARACION DE DATOS Y PARAMETROS  
-  #-------------------------->>>  
-  
-  pPeriodicidad <- c(1,2,4,12)
-  SetDatosX     <- na.omit(as.numeric(SetDatosX))  
-  SetDatosX_TS  <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad], 1)
-  
-  #-------------------------->>> 
-  # [2] PROCEDIMIENTO ANALITICO
-  #-------------------------->>> 
-  
-  b <- acf(SetDatosX_TS)
-  c <- pacf(SetDatosX_TS)
-  n <- b$n.used
-  h <- -1/n + c(-2, 2)/sqrt(n)
-  
-  Modelo  = cbind(
-                  "AutoCorrelogramaTotal"=b$acf,
-                  "AutoCorrelogramaParcial"=c$acf,
-                  "LIM_inf"=h[1],
-                  "LIM_sup"=h[2]
-                  )
-  
-  #-------------------------->>> 
-  # [3] PREPARACION DE RESULTADOS
-  #-------------------------->>> 
-
-    OutPut <- Modelo
+    Procedimientos <- R4XCL_INT_PROCEDIMIENTOS()
     
-  #-------------------------->>> 
-  # [4] RESULTADO FINAL
-  #-------------------------->>> 
-  
-  return(OutPut)  
-}
+    pPeriodicidad <- c(1,2,3,4,12)
+    DatosX        <- na.omit(as.numeric(SetDatosX))  
+    DatosXts      <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad])
+    pTipoDescomp  <- c("additive","multiplicative")
+    pVariables    <- ncol(SetDatosX)
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# FIN DE PROCEDIMIENTO                                 +
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Detalle <- "Calcula la Autocorrelaci?n Serial de la Serie introducida"
-
-attr(ST_Autocorrelacion, "description" ) <- 
-  list( 
-    Detalle,
-    SetDatosX       = "Serie de tiempo observada",
-    Periodicidad    = "Periodicidad de los datos 1: Anual, 2: Semestral, 3: Trimestral 4:Mensual"
-  )
-
-
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# DESCOMPOSICION:
-#           1:Aditiva
-#           2:Multiplicativa
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-ST_Descomposicion <- function(
-                              SetDatosX, 
-                              Periodicidad=1,
-                              TipoModelo=1,
-                              TipoOutput=0
-                            )
-{
-  
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.vector(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un vector.")
-  }
-  if (!is.numeric(Periodicidad) || Periodicidad < 1 || Periodicidad > 4) {
-    stop("Error: Periodicidad debe ser un número entre 1 y 4.")
-  }
-  if (!is.numeric(TipoModelo) || TipoModelo < 1 || TipoModelo > 2) {
-    stop("Error: TipoModelo debe ser 1 o 2.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 1) {
-    stop("Error: TipoOutput debe ser 0 o 1.")
-  }
-  
-  #-------------------------->>>
-  # PREPARACION DE DATOS Y PARAMETROS
-  #-------------------------->>>
-  
-  library(tseries)
-  library(mFilter)
-  library(xts)  
-  library(TTR)   
-  
-  #-------------------------->>>   
-  # [1] PREPARACION DE DATOS Y PARAMETROS  
-  #-------------------------->>>  
-  
-  pPeriodicidad <- c(1,2,4,12)
-  pTipoDescomp  <- c("additive","multiplicative")
-  SetDatosX     <- na.omit(as.numeric(SetDatosX))  
-  SetDatosX_TS  <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad], 1)
-  
-  #-------------------------->>> 
-  # [2] PROCEDIMIENTO ANALITICO
-  #-------------------------->>> 
-
-    Modelo  <- decompose(
-                        SetDatosX_TS,
-                        type=pTipoDescomp[TipoModelo]
-                        ) 
-
-  #-------------------------->>> 
-  # [3] PREPARACION DE RESULTADOS
-  #-------------------------->>> 
-  
-  if (TipoOutput == 0){
-    
-    OutPut  <- cbind(Modelo$trend, Modelo$seasonal,Modelo$random)
-    
-  }else if(TipoOutput == 1){      
-    
-    OutPut  <- cbind(Modelo$figure)
-  
-  }else if(TipoOutput >= 1){   
-    
-    OutPut <- "Revisar parámetros disponibles" 
-    
-  }    
+    if (TipoOutPut==0){
       
-  #-------------------------->>> 
-  # [4] RESULTADO FINAL
-  #-------------------------->>> 
+        OutPut = Procedimientos$SERIES_T
+        
+    }else if (TipoOutPut==1){
+      
+      # COINTEGRACION
+      if(pVariables==1)
+        {OutPut="Este test requiere al menos dos variables"}
+      else
+        {
+          a <- tseries::po.test(DatosXts)
+          OutPut  <- capture.output(a)
+        }
+      
+    }else if (TipoOutPut==2){
+      
+        # RAIZ UNITARIA                      
+        a <- tseries::adf.test(DatosXts)
+        OutPut  <- capture.output(a)
+        
+    }else if (TipoOutPut==3){
+      
+        # PHILLIPS - PERRON
+        a <- tseries::pp.test(DatosXts)
+        OutPut  <- capture.output(a)
+      
+    }else if (TipoOutPut==4){
+      
+        # JARQUE BERA                      
+        a <- tseries::jarque.bera.test(DatosXts) 
+        OutPut  <- capture.output(a)                
+        
+    }else if (TipoOutPut==5){
+      
+        # AUTOCORRELACIÓN
+        b <- acf(DatosXts, pl=FALSE)
+        c <- pacf(DatosXts, pl=FALSE)
+        n <- b$n.used
+        h <- (-1/n) + c(-2, 2)/sqrt(n)
+        
+        OutPut  = cbind(
+                        "AutoCorrelogramaTotal"=b$acf,
+                        "AutoCorrelogramaParcial"=c$acf,
+                        "LIM_inf"=h[1],
+                        "LIM_sup"=h[2]
+                       )
+        
+  }else if (TipoOutPut==6){
+    
+       # ADITIVO
+       Modelo  <- decompose(DatosXts, type="additive") 
+       OutPut  <- cbind(Modelo$trend, Modelo$seasonal,Modelo$random)
   
-  return(OutPut)  
+  }else if (TipoOutPut==7){
+    
+        # MULTIPLICATIVO
+        Modelo  <- decompose(DatosXts, type="multiplicative") 
+        OutPut  <- cbind(Modelo$trend, Modelo$seasonal,Modelo$random)
+  }
+    
+  return(OutPut);  
+
 }
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-# FIN DE PROCEDIMIENTO                                 +
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Detalle = "Calcula diversos tests de series temporales, a la (s) Serie (s) facilitada (s) por el usuario"
 
-Detalle <- "Aplica diversos filtros a una Serie de Tiempo"
-
-attr(ST_Descomposicion, "description" ) = 
+attr(ST_SeriesTemporales, "description" ) = 
   list( 
       Detalle,
-      SetDatosX       = "Serie de tiempo observada",
-      Periodicidad    = "Periodicidad de los datos 1: Anual, 2: Semestral, 3: Trimestral 4:Mensual",
-      TipoModelo      = "1: Aditivo, 2:Multiplicativo",
-      TipoOutput      = "0:Modelo, 1:Efectos Estacionales"
+      SetDatosX    = "Series de tiempo por analizar",
+      Periodicidad = "Periodicidad de los datos 1: Anual, 2: Semestral, 3: Trimestral 4:Mensual",
+      TipoOutput   = "0:Lista de funciones, 1:ARMA, 2:ARIMA, 3: SARIMA,4: GARCH, 5:E-GARCH"
       )
 
-####### 
+ST_Autoregresivos<- function(SetDatosX,Periodicidad=1, TipoOutPut=0, OrdenP, OrdenD, OrdenQ)
+{
+  
+  library(tseries)
+  Procedimientos <- R4XCL_INT_PROCEDIMIENTOS()
+
+  pPeriodicidad <- c(1,2,3,4,12)
+  DatosX        <- na.omit(as.numeric(SetDatosX))  
+  DatosXts      <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad])
+  pTipoDescomp  <- c("additive","multiplicative")
+  
+  if (TipoOutPut==0){
+    
+    OutPut = Procedimientos$SERIES_AR
+    
+  }else if (TipoOutPut==1){
+    
+    # PREDICCIONARMA
+    a       <- tseries::arma(DatosXts, order=c(OrdenP,OrdenQ))
+    OutPut  <- capture.output(summary(a))
+  
+  }else if (TipoOutPut==1.1){
+    
+    # ARMA
+    a       <- tseries::arma(DatosXts, order=c(OrdenP,OrdenQ))
+    OutPut  <- data.frame(predict(a, n.ahead = 6,se.fit = TRUE))   
+    
+  }else if (TipoOutPut==2){
+    
+    # ARIMA                     
+    a       <- stats::arima(DatosXts, order=c(OrdenP,OrdenD,OrdenQ))
+    OutPut  <- capture.output(a)
+  
+  }else if (TipoOutPut==2.1){
+    
+    # PREDICCION ARIMA                     
+    a       <- stats::arima(DatosXts, order=c(OrdenP,OrdenD,OrdenQ))
+    OutPut  <- data.frame(predict(a, n.ahead = 6,se.fit = TRUE))
+      
+  }else if (TipoOutPut==3){
+    
+    # SARiMA                     
+    OutPut  <- "EN PROCESO"
+    
+  }else if (TipoOutPut==3.1){
+    
+    # PREDICCION SARiMA                     
+    OutPut  <- "EN PROCESO"    
+
+  }else if (TipoOutPut==4){
+    
+    # GARCH                     
+    a       <- tseries::garch(DatosXts, order=c(OrdenP,OrdenQ))
+    OutPut  <- capture.output(summary(a))  
+
+  }else if (TipoOutPut==4.1){
+    
+    # PREDICCION GARCH                     
+    a       <- tseries::garch(DatosXts, order=c(OrdenP,OrdenQ))
+    OutPut  <- data.frame(predict(a, n.ahead = 6,se.fit = TRUE))    
+            
+  }else if (TipoOutPut==5){
+    # E GARCH                     
+    OutPut  <- "EN PROCESO"
+    
+  }else if (TipoOutPut==5.1){
+    
+    # PREDICCION E GARCH                      
+    OutPut  <- "EN PROCESO" 
+    
+  }else if (TipoOutPut>04){
+    
+    OutPut  <- "REVISAR PARAMETRO TIPO OUTPUT"
+    
+  }
+  
+  return(OutPut);  
+  
+}
+
+Detalle = "Calcula diversos tests de series temporales, a la (s) Serie (s) facilitada (s) por el usuario"
+
+attr(ST_Autoregresivos, "description" ) = 
+  list( 
+    Detalle,
+    SetDatosX    = "Series de tiempo por analizar",
+    Periodicidad = "Periodicidad de los datos 1: Anual, 2: Semestral, 3: Trimestral 4:Mensual",
+    TipoOutput   = "0:Lista de funciones, 1:ARMA, 1.1: PREDICCIÓN ARMA, 2: ARiMA, 
+                    2.1: PREDICCIÓN ARiMA, 3: GARCH, 3.1:PREDICCIÓN GARCH, 4:DESCOMPOSICIÓN ST ADITIVO, 
+                    4:DESCOMPOSICIÓN ST MULTIPLICATIVO"
+  )
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++    
 # FILTROS:  1:Hodrick-Prescott, 
@@ -366,39 +202,13 @@ ST_Filtro <- function(
 {
   
   #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.vector(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un vector.")
-  }
-  if (!is.numeric(Periodicidad) || Periodicidad < 1 || Periodicidad > 4) {
-    stop("Error: Periodicidad debe ser un número entre 1 y 4.")
-  }
-  if (!is.numeric(TipoModelo) || TipoModelo < 1 || TipoModelo > 5) {
-    stop("Error: TipoModelo debe ser un número entre 1 y 5.")
-  }
-  if (!is.numeric(Drift) || Drift < 0 || Drift > 1) {
-    stop("Error: Drift debe ser 0 o 1.")
-  }
-  if (!is.numeric(RaizUnitaria) || RaizUnitaria < 0 || RaizUnitaria > 1) {
-    stop("Error: RaizUnitaria debe ser 0 o 1.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 1) {
-    stop("Error: TipoOutput debe ser 0 o 1.")
-  }
-  
-  #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
   #-------------------------->>>
   
   library(tseries) 
   library(mFilter)
-  library(xts)  
-  library(TTR)  
+ 
+  Procedimientos <- R4XCL_INT_PROCEDIMIENTOS()
   
   #-------------------------->>>   
   # [1] PREPARACION DE DATOS Y PARAMETROS  
@@ -413,7 +223,7 @@ ST_Filtro <- function(
   
   SetDatosX <- na.omit(as.numeric(SetDatosX))  
   
-  SetDatosX_TS <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad], 1)
+  SetDatosX_TS <- ts(SetDatosX,frequency=pPeriodicidad[Periodicidad])
 
   #-------------------------->>> 
   # [2] PROCEDIMIENTO ANALITICO
@@ -422,10 +232,10 @@ ST_Filtro <- function(
   if (TipoModelo == 1){ 
     
     Modelo <- mFilter(SetDatosX_TS, 
-    filter <- pFiltro[TipoModelo],
-    freq   <- pLambda[Periodicidad], 
-    root   <- pRaizUnitaria[RaizUnitaria+1],
-    drift  <- pDrift[Drift+1]) 
+                      filter = pFiltro[TipoModelo],
+                      freq   = pLambda[Periodicidad], 
+                      root   = pRaizUnitaria[RaizUnitaria+1],
+                      drift  = pDrift[Drift+1]) 
   
   }else if (TipoModelo == 3 |TipoModelo == 5 ){ 
     
@@ -450,11 +260,12 @@ ST_Filtro <- function(
    
   if (TipoOutput == 0){
     
-    OutPut  <- cbind(Modelo$trend, Modelo$cycle,Modelo$lambda)
+    OutPut = Procedimientos$SERIES_F
+
               
   }else if(TipoOutput > 0){      
     
-    OutPut <- "Revisar par?metros disponibles" 
+    OutPut  <- cbind(Modelo$trend, Modelo$cycle,Modelo$lambda)
      
   } 
    #-------------------------->>> 
