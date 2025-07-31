@@ -158,19 +158,7 @@ R4XCL_INT_DATOS = function(
                           Ponderadores = NULL
                           )
 {
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
-  
+
   #-------------------------->>>
   # PREPARACION DE DATOS
   #-------------------------->>>
@@ -328,19 +316,7 @@ R4XCL_INT_DATOS_TEXTO = function (
                                  Ponderadores = NULL
                                  )
 {
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.data.frame(SetDatosX)) {
-    stop("Error: SetDatosX debe ser un data frame.")
-  }
-  if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
-    stop("Error: SetDatosY debe ser un data frame.")
-  }
+
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -425,21 +401,66 @@ R4XCL_INT_DATOS_TEXTO = function (
 # DEFINIR FUNCIÓN
 #------------------------------------>>>
 
-R4XCL_INT_FUNCION <- function (SetDatosX,SetDatosY = NULL)
+R4XCL_INT_PIVOTE <- function (SetDatosX,SetDatosY)
 {
   
   #-------------------------->>>
-  # VALIDACIONES
+  # PREPARACION DE DATOS Y PARAMETROS
   #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
+  
+  pX <- ncol(SetDatosX)
+  pY <- ncol(SetDatosY)
+  pp <- pY + pX
+  
+  nombresX <- paste0(SetDatosX[1,1:pX])
+  nombresY <- paste0(SetDatosY[1,1])
+
+  #-------------------------->>>
+  # CONSTRUIR FORMULA
+  #-------------------------->>>  
+
+  especificacion_A <- ""
+  especificacion_B <- ""
+  
+  if (pp<1){
+    
+    especificacion_F = ""
+    
+  }else if (pp==2){
+    
+    especificacion_F <- paste(nombresX[1],"~",nombresY[1])
+    
+  }else if (pp>2){
+
+    especificacion_A <- paste("cbind(",nombresX[1])
+    especificacion_B <- paste("," ,nombresX[3:pX-1], collapse="")
+    especificacion_F <- paste(
+                              c(
+                                especificacion_A,
+                                especificacion_B,
+                                ")~",
+                                nombresY[1]
+                               ),
+                               collapse=""
+                            )
+  }  
+  
+  #-------------------------->>>
+  # RESULTADO FINAL
+  #-------------------------->>>
+  
+  Resultado=especificacion_F
+  
+  return(Resultado)
+}
+
+
+#------------------------------------>>>
+# DEFINIR FUNCIÓN
+#------------------------------------>>>
+
+R4XCL_INT_FUNCION <- function (SetDatosX,SetDatosY = NULL)
+{
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -508,28 +529,10 @@ R4XCL_INT_FILTRAR <- function (
                               SetDatosY = NULL,
                               Filtro = NULL,
                               Ponderadores = NULL,
-                              pDimY,pX,pY,nX
+                              pDimY=0,pX,pY=0,nX
                               )
 {
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!missing(SetDatosY) &&!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
-  # if (!is.null(Filtro) &&!is.vector(Filtro)) {
-  #   stop("Error: Filtro debe ser un vector.")
-  # }
-  # if (!is.null(Ponderadores) &&!is.vector(Ponderadores)) {
-  #   stop("Error: Ponderadores debe ser un vector.")
-  # }
-  
+
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
   #-------------------------->>>

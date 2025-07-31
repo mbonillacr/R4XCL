@@ -1,0 +1,65 @@
+Snapshot="https://packagemanager.posit.co/cran/2018-04-23"
+options(repos = c(CRAN =Snapshot))
+
+Packages which are only available in source form, and may need
+  compilation of C/C++/Fortran: 'bit' 'RMySQL' 'RSQLite'
+  These will not be installed
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/rex_1.1.2.zip'
+Content type 'binary/octet-stream' length 143582 bytes (140 KB)
+downloaded 140 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/evaluate_0.10.1.zip'
+Content type 'binary/octet-stream' length 85188 bytes (83 KB)
+downloaded 83 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/highr_0.6.zip'
+Content type 'binary/octet-stream' length 50606 bytes (49 KB)
+downloaded 49 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/markdown_0.8.zip'
+Content type 'binary/octet-stream' length 201817 bytes (197 KB)
+downloaded 197 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/blob_1.1.1.zip'
+Content type 'binary/octet-stream' length 25294 bytes (24 KB)
+downloaded 24 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/praise_1.0.0.zip'
+Content type 'binary/octet-stream' length 21466 bytes (20 KB)
+downloaded 20 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/bit64_0.9-7.zip'
+Content type 'binary/octet-stream' length 609683 bytes (595 KB)
+downloaded 595 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/covr_3.0.1.zip'
+Content type 'binary/octet-stream' length 221833 bytes (216 KB)
+downloaded 216 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/dbplyr_1.2.1.zip'
+Content type 'binary/octet-stream' length 564355 bytes (551 KB)
+downloaded 551 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/dtplyr_0.0.2.zip'
+Content type 'binary/octet-stream' length 63630 bytes (62 KB)
+downloaded 62 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/knitr_1.20.zip'
+Content type 'binary/octet-stream' length 1278626 bytes (1.2 MB)
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/microbenchmark_1.4-4.zip'
+Content type 'binary/octet-stream' length 78040 bytes (76 KB)
+downloaded 76 KB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/rmarkdown_1.9.zip'
+Content type 'binary/octet-stream' length 2609378 bytes (2.5 MB)
+downloaded 2.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/testthat_2.0.0.zip'
+Content type 'binary/octet-stream' length 1640573 bytes (1.6 MB)
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/2018-04-23/bin/windows/contrib/3.5/dplyr_0.7.4.zip'
+Content type 'binary/octet-stream' length 2936946 bytes (2.8 MB)
+downloaded 2.8 MB

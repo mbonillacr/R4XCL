@@ -2,67 +2,67 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
 {
   Reg_PanelData <- 
     c(
-      "[01] Estimacion Datos de Panel", 
-      "[02] Efectos Fijos para INDIVIDUOS",
-      "[03] Test de Efectos Fijos para INDIVIDUOS",
-      "[04] Test de Haussman para efectos aleatorios",
-      "[05] Efectos Fijos para TIEMPO",
-      "[06] Test de Breush-Pagan para efectos aleatorios en [t]",
-      "[07] Test de Breush-Pagan para efectos aleatorios en [i]",
-      "[08] Test de Breush-Pagan para efectos aleatorios en [t,i]",
-      "[09] Test de Breush-Pagan para efectos aleatorios",
-      "[10] Test de Breush-Pagan para correlación contemporánea",
-      "[11] Test de Pesaran para correlación contemporánea",
-      "[12] Test de correlacion serial",
-      "[13] Test de raiz unitaria", 
-      "[14] Especificación empleada",
-      "[15] Guardar Modelo Estimado en RDS"
+        "[01] Estimacion Datos de Panel", 
+        "[02] Efectos Fijos para INDIVIDUOS",
+        "[03] Test de Efectos Fijos para INDIVIDUOS",
+        "[04] Test de Haussman para efectos aleatorios",
+        "[05] Efectos Fijos para TIEMPO",
+        "[06] Test de Breush-Pagan para efectos aleatorios en [t]",
+        "[07] Test de Breush-Pagan para efectos aleatorios en [i]",
+        "[08] Test de Breush-Pagan para efectos aleatorios en [t,i]",
+        "[09] Test de Breush-Pagan para efectos aleatorios",
+        "[10] Test de Breush-Pagan para correlación contemporánea",
+        "[11] Test de Pesaran para correlación contemporánea",
+        "[12] Test de correlacion serial",
+        "[13] Test de raiz unitaria", 
+        "[14] Especificación empleada",
+        "[15] Guardar Modelo Estimado en RDS"
      )
   
   Reg_Lineal <- 
     c(
-      "[01] Estimar Modelo de Regresión Lineal",
-      "[02] Estimar valores para la [Y] (dentro de muestra)",
-      "[03] Estimar valores para la [Y] (fuera de muestra)",
-      "[04] Obtener efectos marginales",
-      "[05] Calcular coeficiente de Inflación de Varianza VIF",
-      "[06] Test de heterocedasticidad Breusch-Pagan", 
-      "[07] Estimación robusta de coeficientes",
-      "[08] Identificar observaciones de influencia en la muestra",
-      "[09] Especificación empleada",
-      "[10] Guardar Modelo Estimado en R",
-      "[11] Modelo estimado con formato original de R",
-      "[12] Obtener residuos estimados"
+        "[01] Estimar Modelo de Regresión Lineal",
+        "[02] Estimar valores para la [Y] (dentro de muestra)",
+        "[03] Estimar valores para la [Y] (fuera de muestra)",
+        "[04] Obtener efectos marginales",
+        "[05] Calcular coeficiente de Inflación de Varianza VIF",
+        "[06] Test de heterocedasticidad Breusch-Pagan", 
+        "[07] Estimación robusta de coeficientes",
+        "[08] Identificar observaciones de influencia en la muestra",
+        "[09] Especificación empleada",
+        "[10] Guardar Modelo Estimado en R",
+        "[11] Modelo estimado con formato original de R",
+        "[12] Obtener residuos estimados"
      )
   
   Reg_Binaria <-  
     c(
-      "[1] Estimar Modelo de Regresión Binaria",
-      "[2] Estimar P[Y=1|XB] (dentro de muestra)",
-      "[3] Estimar P[Y=1|XB] (fuera de muestra)",
-      "[4] Test de Hosmer & Lemeshow",
-      "[5] Obtener efectos marginales",
-      "[6] ANOVA",
-      "[7] Especificación empleada",
-      "[8] Guardar Modelo Estimado en R"
+        "[1] Estimar Modelo de Regresión Binaria",
+        "[2] Estimar P[Y=1|XB] (dentro de muestra)",
+        "[3] Estimar P[Y=1|XB] (fuera de muestra)",
+        "[4] Test de Hosmer & Lemeshow",
+        "[5] Obtener efectos marginales",
+        "[6] ANOVA",
+        "[7] Especificación empleada",
+        "[8] Guardar Modelo Estimado en R"
      )
   
   Reg_Tobit <-  
     c(
-      "[1] Estimar Modelo de Regresión Tobit",
-      "[2] Estimar [Y] (dentro de muestra)",
-      "[3] Estimar [Y] (fuera de muestra)",
-      "[4] Especificación empleada",
-      "[5] Guardar Modelo Estimado en R"
+        "[1] Estimar Modelo de Regresión Tobit",
+        "[2] Estimar [Y] (dentro de muestra)",
+        "[3] Estimar [Y] (fuera de muestra)",
+        "[4] Especificación empleada",
+        "[5] Guardar Modelo Estimado en R"
     )
   
   Reg_Poisson <- 
     c(
-      "[1] Estimar Modelo de Regresi?n Poisson",
-      "[2] Estimar [Y] (dentro de muestra)",
-      "[3] Estimar [Y] (fuera de muestra)",
-      "[4] Especificaci?n empleada",
-      "[5] Guardar Modelo Estimado en R"
+        "[1] Estimar Modelo de Regresi?n Poisson",
+        "[2] Estimar [Y] (dentro de muestra)",
+        "[3] Estimar [Y] (fuera de muestra)",
+        "[4] Especificaci?n empleada",
+        "[5] Guardar Modelo Estimado en R"
      )
   
   Reg_Arboles <- 
@@ -76,47 +76,53 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
   
   Reg_SeriesTiempo <- 
     c(
-      "[1] TEST PHILLIPS-OULIARIS",
-      "[2] TEST ADF", 
-      "[3] TEST PHILLIPS-PERRON", 
-      "[4] TEST JARQUE BERA",
-      "[5] AUTOCORRELACIÓN",
-      "[6] DESCOMPOSICIÓN ST MODELO ADITIVO",
-      "[7] DESCOMPOSICIÓN ST MODELO MULTIPLICATIVO"
+        "[1] TEST PHILLIPS-OULIARIS",
+        "[2] TEST ADF", 
+        "[3] TEST PHILLIPS-PERRON", 
+        "[4] TEST JARQUE BERA",
+        "[5] AUTOCORRELACIÓN",
+        "[6] DESCOMPOSICIÓN ST MODELO ADITIVO",
+        "[7] DESCOMPOSICIÓN ST MODELO MULTIPLICATIVO"
     )  
   
   Reg_SeriesTiempo_F <- 
     c(
-      "[1] Hodrick-Prescott",
-      "[2] Baxter-King", 
-      "[3] Christiano-Fitzgerald", 
-      "[4] Butterworth",
-      "[5] Trigonometric regression"
-    ) 
+        "[1] Hodrick-Prescott",
+        "[2] Baxter-King", 
+        "[3] Christiano-Fitzgerald", 
+        "[4] Butterworth",
+        "[5] Trigonometric regression"
+      ) 
   
   Reg_AutoRegresivo <- 
     c(
-      "[1] ARMA",
-      "[1.1] PREDICCION ARMA",      
-      "[2] ARIMA",
-      "[2.1] PREDICCION ARiMA",
-      "[3] SARiMA",
-      "[3.1] PREDICCION SARiMA",      
-      "[4] GARCH",
-      "[4.1] PREDICCION GARCH",
-      "[5] E-GARCH",
-      "[5.1] PREDICCION E-GARCH"      
+        "[1] ARMA",
+        "[1.1] PREDICCION ARMA",      
+        "[2] ARIMA",
+        "[2.1] PREDICCION ARiMA",
+        "[3] SARiMA",
+        "[3.1] PREDICCION SARiMA",      
+        "[4] GARCH",
+        "[4.1] PREDICCION GARCH",
+        "[5] E-GARCH",
+        "[5.1] PREDICCION E-GARCH"      
       ) 
+  
+  Reg_SVM <-
+    c(
+        "[0]: Funciones disponibles",
+        "[1]: Kernel"
+      )
   
   AD_KMedias <-  
     c(
-      "[1] Cluster Asignado",
-      "[2] Centros",
-      "[3] Variabilidad intra clases",
-      "[4] Variabilidad Total",
-      "[5] Parámetros de Proceso",
-      "[6] Test GAP",
-      "[7] K-Optimo"
+        "[1] Cluster Asignado",
+        "[2] Centros",
+        "[3] Variabilidad intra clases",
+        "[4] Variabilidad Total",
+        "[5] Parámetros de Proceso",
+        "[6] Test GAP",
+        "[7] K-Optimo"
     )
   
   AD_ACP <- 
@@ -149,62 +155,64 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
   
   Computo_Vars <-
     list(
-          "[1] Crea variables Dummies",
-          "[2] Centrar y/o estandarizar conjunto de Datos",
-          "[3] Computar Distancias (Euclideana, Máximo, Canberra, Binaria)"
+        "[1] Crea variables Dummies",
+        "[2] Centrar y/o estandarizar conjunto de Datos",
+        "[3] Computar Distancias (Euclideana, Máximo, Canberra, Binaria)"
         )
   
   Graficacion <-
     list(
-          "[1] BoxPlot",
-          "[2] EN PROCESO",
-          "[3] EN PROCESO",
-          "[4] EN PROCESO",
-          "[5] EN PROCESO",
-          "[6] EN PROCESO",
-          "[7] EN PROCESO",
-          "[8] EN PROCESO",
-          "[9] EN PROCESO"
+        "[1] BoxPlot",
+        "[2] EN PROCESO",
+        "[3] EN PROCESO",
+        "[4] EN PROCESO",
+        "[5] EN PROCESO",
+        "[6] EN PROCESO",
+        "[7] EN PROCESO",
+        "[8] EN PROCESO",
+        "[9] EN PROCESO"
         )
   
   Instalacion <-
     list(
-          "[01] SVDIALOGS",
-          "[02] DEVTOOLS",
-          "[03] WORLDMAP",
-          "[04] STARGAZER",
-          "[05] PLM",
-          "[06] RPART",
-          "[07] RESOURCE SELECTION",
-          "[08] TM",
-          "[09] SNOWBALLC",
-          "[10] WORLDCLOUD",
-          "[11] PERFORMANCE ANALYTICS",
-          "[12] RLANG",
-          "[13] FS",
-          "[14] DUMMIES",
-          "[15] WOOLDRIDGE",
-          "[999] TODOS"
+        "[01] SVDIALOGS",
+        "[02] DEVTOOLS",
+        "[03] WORLDMAP",
+        "[04] STARGAZER",
+        "[05] PLM",
+        "[06] RPART",
+        "[07] RESOURCE SELECTION",
+        "[08] TM",
+        "[09] SNOWBALLC",
+        "[10] WORLDCLOUD",
+        "[11] PERFORMANCE ANALYTICS",
+        "[12] RLANG",
+        "[13] FS",
+        "[14] DUMMIES",
+        "[15] WOOLDRIDGE",
+        "[16] E1071",
+        "[999] TODOS"
          )
   
   Procedimientos <- 
     list(
-      "PANEL"    = Reg_PanelData, 
-      "LINEAL"   = Reg_Lineal,
-      "BINARIO"  = Reg_Binaria,
-      "TOBIT"    = Reg_Tobit,
-      "POISSON"  = Reg_Poisson,
-      "ARBOLES"  = Reg_Arboles,
-      "SERIES_T" = Reg_SeriesTiempo,
-      "SERIES_AR"= Reg_AutoRegresivo,
-      "SERIES_F" = Reg_SeriesTiempo_F,
-      "KMEDIAS"  = AD_KMedias,
-      "ACP"      = AD_ACP,
-      "ALGEBRA"  = Mat_Algebra,
-      "COMPUTOS" = Computo_Vars,
-      "GRAFICA"  = Graficacion,
-      "INSTALA"  = Instalacion
-    )
+        "PANEL"    = Reg_PanelData, 
+        "LINEAL"   = Reg_Lineal,
+        "SVM"      = Reg_SVM,
+        "BINARIO"  = Reg_Binaria,
+        "TOBIT"    = Reg_Tobit,
+        "POISSON"  = Reg_Poisson,
+        "ARBOLES"  = Reg_Arboles,
+        "SERIES_T" = Reg_SeriesTiempo,
+        "SERIES_AR"= Reg_AutoRegresivo,
+        "SERIES_F" = Reg_SeriesTiempo_F,
+        "KMEDIAS"  = AD_KMedias,
+        "ACP"      = AD_ACP,
+        "ALGEBRA"  = Mat_Algebra,
+        "COMPUTOS" = Computo_Vars,
+        "GRAFICA"  = Graficacion,
+        "INSTALA"  = Instalacion
+        )
   
   return (Procedimientos)
 }

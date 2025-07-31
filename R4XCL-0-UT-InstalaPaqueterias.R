@@ -1,6 +1,11 @@
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # INSTALAR PAQUETES
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# OJO QUE SIEMPRE necesitare RTools
+# instalar RTools.exe
+# cerrar Excel, abrir Excel
+
+
 
 R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
 {
@@ -14,9 +19,12 @@ R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
       
     }else if(TipoOutput == 1){
     
-      pSVDIALOGS <- c("svMisc_1.0-1.tar.gz", 
-                      "svGUI_0.9-55.tar.gz", 
-                      "svDialogs_0.9-50.tar.gz")
+      pSVDIALOGS <- c(
+                      "svMisc_1.0-1.tar.gz",
+                      "svGUI_1.0.1.tar.gz",
+                      #"svDialogs_0.9-50.tar.gz",
+                      "svDialogs_1.1.0.tar.gz",
+                      "svDialogstcltk_0.9-4.tar.gz")
       
       OutPut <- pSVDIALOGS
     
@@ -135,6 +143,34 @@ R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
       
       OutPut <- pWOOLDRIDGE  
       
+    }else if(TipoOutput == 16){
+      
+      directorio=paste0(directorio,"DPLYR/")
+      
+      dplyr = c("rex_1.1.2.tar.gz",
+                "evaluate_0.10.1.tar.gz",
+                "highr_0.6.tar.gz",
+                "markdown_0.8.tar.gz",
+                "blob_1.1.1.tar.gz",
+                "praise_1.0.0.tar.gz",
+                "bit_4.5.0.1.tar.gz",
+                "bit64_0.9-7.tar.gz", #cambiado del 0.9-7
+                "covr_3.0.1.tar.gz",
+                "dbplyr_1.2.1.tar.gz",
+                "dtplyr_0.0.2.tar.gz",
+                "knitr_1.20.tar.gz",
+                "microbenchmark_1.4-4.tar.gz",
+                "rmarkdown_1.9.tar.gz",
+                "testthat_2.0.0.tar.gz",
+                "dplyr_0.7.4.tar.gz")
+      
+      OutPut <- dplyr   
+      
+    }else if(TipoOutput == 17){
+      
+      e1071 = c("e1071_1.6-8.tar.gz") 
+      
+      OutPut <- e1071     
       
     }else if(TipoOutput == 999){
      
@@ -153,7 +189,8 @@ R4XCL_INSTALACION <- function(directorio,TipoOutput=0 )
                      pRLANG,
                      pFS,
                      pDUMMIES,
-                     pWOOLDRIDGE
+                     pWOOLDRIDGE,
+                     pE1071
                    )
     }  
 
