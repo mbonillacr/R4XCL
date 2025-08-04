@@ -1,5 +1,10 @@
 DB_Unicos <- function(SetDatosX)
 {
+  nombresX    <- as.character(SetDatosX[1, 1:pX])
+  SetDatosX   <- data.frame(SetDatosX[-1, ])
+
+  colnames(SetDatosX) <- nombresX
+  colnames(SetDatosY) <- nombresY
   a=data.frame(unique(SetDatosX))
   return(a)
   
