@@ -260,7 +260,7 @@ ST_Filtro <- function(
    
   if (TipoOutput == 0){
     
-    OutPut = Procedimientos$SERIES_F
+    OutPut = Procedimientos$Reg_SeriesTiempo_F
 
               
   }else if(TipoOutput > 0){      
