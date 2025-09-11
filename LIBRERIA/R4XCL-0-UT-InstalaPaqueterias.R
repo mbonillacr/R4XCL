@@ -8,17 +8,31 @@
 
 
 UT_INSTALACION_WEB <- function() {
+
+  old_repos <- getOption("repos")
+  on.exit(options(repos = old_repos))
+    
+  repositorio_cran <- "https://packagemanager.rstudio.com/cran/2022-05-06"
+  options(repos = c(CRAN = repositorio_cran))
   
   # 1. Verificar si el paquete svDialogs esta instalado
   if (!requireNamespace("svDialogs", quietly = TRUE)) {
-    stop("El paquete 'svDialogs' no esta instalado. Por favor, instalelo con:\ninstall.packages('svDialogs')")
-  }
+    stop("El paquete 'svDialogs' no esta instalado. Se procede con su instalación")
+    
+    packages <- c('svDialogs','svDialogstcltk','svMisc','svGui')
+    
+    for (pkg in packages) 
+          {
+            if (!requireNamespace(pkg, quietly = TRUE)) 
+              {install.packages(pkg)}
+              library(pkg)
+          }
+      }
   
   repositorio_cran <- "https://packagemanager.rstudio.com/cran/2018-03-15"
+  options(repos = c(CRAN = repositorio_cran))
   
   paquetes_disponibles <- c(
-    "svDialogs",
-    "svDialogstcltk",
     "devtools",
     "rworldmap",
     "stargazer",
@@ -50,9 +64,7 @@ UT_INSTALACION_WEB <- function() {
   }
   
   # 3. Guardar y restaurar la configuracion de repositorios
-  old_repos <- getOption("repos")
-  on.exit(options(repos = old_repos))
-  
+
   options(repos = c(CRAN = repositorio_cran))
   
   svDialogs::dlg_message(
