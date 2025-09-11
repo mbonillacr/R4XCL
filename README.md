@@ -1,6 +1,6 @@
 # R4XCL: Un Puente de Integración entre R y Excel
 
-R4XCL es una herramienta de código abierto diseñada para democratizar el análisis de datos avanzado, integrando la potencia computacional del lenguaje de programación **R** directamente en el entorno familiar de **Microsoft Excel**. Utilizando [**BERT (Basic Excel R Toolkit)**](https://bert-toolkit.com/) como puente tecnológico, R4XCL permite a usuarios sin conocimientos de programación ejecutar análisis estadísticos avanzados, modelado matemático complejo y visualizaciones de alta calidad como si fueran funciones nativas de Excel.
+R4XCL es una herramienta de código abierto diseñada para democratizar el análisis de datos avanzado, integrando la potencia computacional del lenguaje de programación **R** directamente en el entorno familiar de **Microsoft Excel**. Utilizando [**BERT (Basic Excel R Toolkit)**]([https://bert-toolkit.com/](https://github.com/sdllc/Basic-Excel-R-Toolkit)) como puente tecnológico, R4XCL permite a usuarios sin conocimientos de programación ejecutar análisis estadísticos avanzados, modelado matemático complejo y visualizaciones de alta calidad como si fueran funciones nativas de Excel.
 
 Este proyecto fue desarrollado como parte de la tesis de maestría de Minor Bonilla Gómez en Matemática Aplicada en la Universidad de Costa Rica.
 
