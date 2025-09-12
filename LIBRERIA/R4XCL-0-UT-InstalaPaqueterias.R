@@ -1,118 +1,15 @@
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # INSTALAR PAQUETES
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #
-# OJO QUE SIEMPRE necesitare RTools
-# instalar RTools.exe
-# cerrar Excel, abrir Excel
-
-
-UT_INSTALACION_WEB <- function() {
-
-  old_repos <- getOption("repos")
-  on.exit(options(repos = old_repos))
-    
-  repositorio_cran <- "https://packagemanager.rstudio.com/cran/2022-05-06"
-  options(repos = c(CRAN = repositorio_cran))
-  
-  # 1. Verificar si el paquete svDialogs esta instalado
-  if (!requireNamespace("svDialogs", quietly = TRUE)) {
-    stop("El paquete 'svDialogs' no esta instalado. Se procede con su instalación")
-    
-    packages <- c('svDialogs','svDialogstcltk','svMisc','svGui')
-    
-    for (pkg in packages) 
-          {
-            if (!requireNamespace(pkg, quietly = TRUE)) 
-              {install.packages(pkg)}
-              library(pkg)
-          }
-      }
-  
-  repositorio_cran <- "https://packagemanager.rstudio.com/cran/2018-03-15"
-  options(repos = c(CRAN = repositorio_cran))
-  
-  paquetes_disponibles <- c(
-    "devtools",
-    "rworldmap",
-    "stargazer",
-    "plm",
-    "rpart.plot",
-    "ResourceSelection",
-    "tm",
-    "SnowballC",
-    "PerformanceAnalytics",
-    "rlang",
-    "dummies",
-    "wooldridge",
-    "dplyr",
-    "e1071"
-  )
-  
-  # 2. Abrir un cuadro de dialogo para que el usuario seleccione los paquetes
-  opciones_seleccion <- 
-    svDialogs::dlg_list(
-                        choices = paquetes_disponibles,
-                        multiple = TRUE,
-                        title = "Seleccione los paquetes que desea instalar"
-                       )$res
-  
-  # Verificar si el usuario cancelo la seleccion
-  if (is.null(opciones_seleccion) || length(opciones_seleccion) == 0) {
-    svDialogs::dlg_message("Proceso cancelado por el usuario.", type = "ok", gui = "info")$res
-    return(invisible(NULL))
-  }
-  
-  # 3. Guardar y restaurar la configuracion de repositorios
-
-  options(repos = c(CRAN = repositorio_cran))
-  
-  svDialogs::dlg_message(
-    sprintf("Iniciando la instalacion desde el repositorio:\n %s", repositorio_cran),
-    title = "Inicio del proceso"
-  )$res
-  
-  # 4. Bucle de instalacion con dialogos de progreso y error
-  for (paquete in opciones_seleccion) {
-    
-    # El mensaje del cafe aparece ANTES de iniciar la instalacion de cada paquete
-    svDialogs::dlg_message(
-      sprintf("Disfrute de un cafe (costarricense) mientras trabajamos por usted en la instalacion de los paquetes seleccionados.\n\nAhora vamos a instalar: %s", paquete),
-      title = "Procesando su solicitud..."
-    )$res
-    
-    # Validacion: ¿El paquete ya esta instalado?
-    if (requireNamespace(paquete, quietly = TRUE)) {
-      svDialogs::dlg_message(
-        sprintf("El paquete '%s' ya esta instalado. Saltando la instalacion.", paquete),
-        title = "Paquete ya existente"
-      )$res
-      next
-    }
-    
-    # Manejo de errores durante la instalacion
-    tryCatch({
-      install.packages(paquete, dependencies = TRUE)
-      svDialogs::dlg_message(
-        sprintf("El paquete '%s' se instalo con exito.", paquete),
-        title = "Instalacion exitosa"
-      )$res
-    },
-    error = function(e) {
-      svDialogs::dlg_message(
-        sprintf("Error al instalar el paquete '%s': %s", paquete, e$message),
-        title = "Error de instalacion",
-        type = "ok",
-        gui = "warning"
-      )$res
-    })
-  }
-  
-  # Mensaje final de proceso completado
-  svDialogs::dlg_message("Proceso de instalacion completado.", title = "Finalizado")$res
-}
-
-
+# Instala un conjunto de paquetes de R con una interfaz grafica.
+#
+# Esta función permite al usuario seleccionar paquetes de una lista
+# predefinida a traves de una ventana de dialogo. Se utiliza un repositorio
+# CRAN especifico para asegurar la reproducibilidad (WEB) también se 
+# incluye la opción de instalar desde un repositorio local
+# No devuelve un valor, pero instala los paquetes seleccionados.
+#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 UT_INSTALACION_LOCAL <- function(directorio,TipoOutput=0 )
 {
@@ -362,5 +259,111 @@ UT_INSTALACION_LOCAL <- function(directorio,TipoOutput=0 )
     df_errores <- rbind(df_errores, df_tiempo)
     return(df_errores)
 
+}
+
+UT_INSTALACION_WEB <- function() 
+{
+  
+  # 0. Guardar y restaurar la configuracion de repositorios
+  
+  old_repos <- getOption("repos")
+  on.exit(options(repos = old_repos))
+  
+  repositorio_cran <- "https://packagemanager.rstudio.com/cran/2022-05-06"
+  options(repos = c(CRAN = repositorio_cran))
+  
+  # 1. Verificar si el paquete svDialogs esta instalado
+  if (!requireNamespace("svDialogs", quietly = TRUE)) {
+    stop("El paquete 'svDialogs' no esta instalado. Por favor, instalelo con:\ninstall.packages('svDialogs')")
   }
   
+
+  # Lista de paquetes disponibles para la seleccion del usuario
+  paquetes_disponibles <- c(
+    "dplyr",
+    "ggplot2",
+    "readr",
+    "tidyr",
+    "lubridate",
+    "rmarkdown",
+    "knitr",
+    "shiny",
+    "renv"
+  )
+  
+  # Definir el repositorio CRAN con snapshot
+  repositorio_cran <- "https://packagemanager.rstudio.com/cran/2018-03-15"
+  
+  # Anadir la opcion para instalar todos los paquetes
+  opciones_disponibles <- c("*** Instalar todos los paquetes ***", paquetes_disponibles)
+  
+  # 2. Abrir un cuadro de dialogo para que el usuario seleccione los paquetes
+  opciones_seleccion <- svDialogs::dlg_list(
+    choices = opciones_disponibles,
+    multiple = TRUE,
+    title = "Seleccione los paquetes que desea instalar"
+  )$res
+  
+  # Verificar si el usuario cancelo la seleccion
+  if (is.null(opciones_seleccion) || length(opciones_seleccion) == 0) {
+    svDialogs::dlg_message("Proceso cancelado por el usuario.", type = "ok", gui = "info")$res
+    return(invisible(NULL))
+  }
+  
+  # Determinar la lista final de paquetes a instalar
+  if ("*** Instalar todos los paquetes ***" %in% opciones_seleccion) {
+    paquetes_a_instalar <- paquetes_disponibles
+  } else {
+    paquetes_a_instalar <- opciones_seleccion
+  }
+  
+  # 3. Guardar y restaurar la configuracion de repositorios
+  old_repos <- getOption("repos")
+  on.exit(options(repos = old_repos))
+  
+  options(repos = c(CRAN = repositorio_cran))
+  
+  svDialogs::dlg_message(
+    sprintf("Iniciando la instalacion desde el repositorio:\n %s", repositorio_cran),
+    title = "Inicio del proceso"
+  )$res
+  
+  # 4. Bucle de instalacion con dialogos de progreso y error
+  for (paquete in paquetes_a_instalar) {
+    
+    # El mensaje del cafe aparece ANTES de iniciar la instalacion de cada paquete
+    svDialogs::dlg_message(
+      sprintf("Disfrute de un cafe (costarricense) mientras trabajamos por usted en la instalacion de los paquetes seleccionados.\n\nAhora vamos a instalar: %s", paquete),
+      title = "Procesando su solicitud..."
+    )$res
+    
+    # Validacion: ¿El paquete ya esta instalado?
+    if (requireNamespace(paquete, quietly = TRUE)) {
+      svDialogs::dlg_message(
+        sprintf("El paquete '%s' ya esta instalado. Saltando la instalacion.", paquete),
+        title = "Paquete ya existente"
+      )$res
+      next # Pasa al siguiente paquete
+    }
+    
+    # Manejo de errores durante la instalacion
+    tryCatch({
+      install.packages(paquete, dependencies = TRUE)
+      svDialogs::dlg_message(
+        sprintf("El paquete '%s' se instalo con exito.", paquete),
+        title = "Instalacion exitosa"
+      )$res
+    },
+    error = function(e) {
+      svDialogs::dlg_message(
+        sprintf("Error al instalar el paquete '%s': %s", paquete, e$message),
+        title = "Error de instalacion",
+        type = "ok",
+        gui = "warning"
+      )$res
+    })
+  }
+  
+  # Mensaje final de proceso completado
+  svDialogs::dlg_message("Proceso de instalacion completado.", title = "Finalizado")$res
+}
