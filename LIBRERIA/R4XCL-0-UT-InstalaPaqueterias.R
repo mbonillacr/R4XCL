@@ -274,14 +274,21 @@ UT_INSTALACION_WEB <- function()
   options(repos = c(CRAN = repositorio_cran))
   options(install.packages.compile.from.source = "always")
   
+  paquetes=c("svDialogs")
+  
   # 1. Verificar si el paquete svDialogs esta instalado
-  if (!requireNamespace("svDialogs", quietly = TRUE)) {
-    stop("El paquete 'svDialogs' no esta instalado. Por favor, instalelo con:\ninstall.packages('svDialogs')")
-  }
+  if (!requireNamespace(paquetes, quietly = TRUE)) 
+    {
+      install.packages(paquetes_no_instalados, dependencies = TRUE)
+      library(paquete, character.only = TRUE)
+    }
   
 
   # Lista de paquetes disponibles para la seleccion del usuario
   paquetes_disponibles <- c(
+    "svGUI", 
+    "svMIsc",
+    "svDialogstcltk",
     "dplyr",
     "ggplot2",
     "readr",
@@ -306,7 +313,8 @@ UT_INSTALACION_WEB <- function()
     "rlang",
     "dummies",
     "wooldridge",
-    "e1071"
+    "e1071",
+    "xgboost"
   )
   
   # Definir el repositorio CRAN con snapshot
