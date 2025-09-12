@@ -94,8 +94,8 @@ MR_Lineal <- function(
     }
     
   }else if(TipoOutput == 4){
-    
-    OutPut <- sapply(marginal_effects(Modelo, DT),mean)
+    library(margins)
+    OutPut <- sapply(margins(Modelo, DT),mean)
     OutPut <- data.frame("R4XCL_EfectosMarginales"= capture.output(OutPut))
     
   }else if(TipoOutput == 5){  

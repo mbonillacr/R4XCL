@@ -295,6 +295,8 @@ UT_INSTALACION_WEB <- function()
     "rworldmap",
     "stargazer",
     "plm",
+    "usdm",
+    "margins",
     "rpart.plot",
     "ResourceSelection",
     "tm",
