@@ -270,7 +270,9 @@ UT_INSTALACION_WEB <- function()
   on.exit(options(repos = old_repos))
   
   repositorio_cran <- "https://packagemanager.rstudio.com/cran/2022-05-06"
+  
   options(repos = c(CRAN = repositorio_cran))
+  options(install.packages.compile.from.source = "always")
   
   # 1. Verificar si el paquete svDialogs esta instalado
   if (!requireNamespace("svDialogs", quietly = TRUE)) {
@@ -288,7 +290,21 @@ UT_INSTALACION_WEB <- function()
     "rmarkdown",
     "knitr",
     "shiny",
-    "renv"
+    "renv",
+    "devtools",
+    "rworldmap",
+    "stargazer",
+    "plm",
+    "rpart.plot",
+    "ResourceSelection",
+    "tm",
+    "SnowballC",
+    "RColorBrewer",
+    "PerformanceAnalytics",
+    "rlang",
+    "dummies",
+    "wooldridge",
+    "e1071"
   )
   
   # Definir el repositorio CRAN con snapshot
@@ -313,8 +329,10 @@ UT_INSTALACION_WEB <- function()
   # Determinar la lista final de paquetes a instalar
   if ("*** Instalar todos los paquetes ***" %in% opciones_seleccion) {
     paquetes_a_instalar <- paquetes_disponibles
+    print(paquetes_a_instalar)
   } else {
     paquetes_a_instalar <- opciones_seleccion
+    print(paquetes_a_instalar)
   }
   
   # 3. Guardar y restaurar la configuracion de repositorios
