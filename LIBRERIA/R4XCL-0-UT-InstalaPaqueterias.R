@@ -308,6 +308,7 @@ UT_INSTALACION_WEB <- function()
     "ResourceSelection",
     "tm",
     "SnowballC",
+    "wordcloud",
     "RColorBrewer",
     "PerformanceAnalytics",
     "rlang",

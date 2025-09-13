@@ -94,6 +94,7 @@ MR_Lineal <- function(
     }
     
   }else if(TipoOutput == 4){
+    
     library(margins)
     OutPut <- sapply(margins(Modelo, DT),mean)
     OutPut <- data.frame("R4XCL_EfectosMarginales"= capture.output(OutPut))
@@ -132,9 +133,11 @@ MR_Lineal <- function(
     
   }else if(TipoOutput == 10){ 
     
-    ListaM <- c(Modelo)
-    ListaN <- c("LINEAL")
-    OutPut <- R4XCL_INT_CREARDS(ListaM,ListaN)
+    #ListaM <- c(Modelo)
+    #ListaN <- c("LINEAL")
+    #OutPut <- R4XCL_INT_CREARDS(ListaM,ListaN)
+    
+    OutPut <- "No disponible"
     
   } else if (TipoOutput == 11){  
     
@@ -146,7 +149,7 @@ MR_Lineal <- function(
     
   }else if(TipoOutput > 12){   
     
-    OutPut <- "Revisar par?metros disponibles" 
+    OutPut <- "Revisar parametros disponibles" 
     
   }  
   
