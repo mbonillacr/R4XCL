@@ -30,6 +30,11 @@ DB_Union <- function(
                    "[4] Left outer",
                    "[5] Right outer")
   
+  if(TipoOutput == 0){ 
+    Opciones= data.frame(Opciones = lista_Opciones)
+    return(Opciones)
+  }
+  
   pX          <- ncol(SetDatosX)
   pY          <- ncol(SetDatosY)
   
@@ -57,17 +62,15 @@ DB_Union <- function(
   SetDatosX[[Llaves_X]] <- as.character(unlist(SetDatosX[[Llaves_X]]))
   SetDatosY[[Llaves_Y]] <- as.character(unlist(SetDatosY[[Llaves_Y]]))
   
-    if(TipoOutput == 0){
-      
-      SetUnido = data.frame(Opciones = lista_Opciones)
-  
-  }else if(TipoOutput == 1){   
-    
+
+  if(TipoOutput == 1){   
+    print("entra")
       SetUnido <- merge(
                         x    = SetDatosX,   y = SetDatosY, 
                         by.x = Llaves_X, by.y = Llaves_Y,
                         all  = FALSE)
-  
+      print(SetUnido)
+      
   }else if(TipoOutput == 2){
       print("entra")
     
@@ -75,6 +78,7 @@ DB_Union <- function(
                         x     = SetDatosX,   y = SetDatosY, 
                         by.x  = Llaves_X, by.y = Llaves_Y,
                         all   = TRUE)
+      print(SetUnido)
     
   }else if(TipoOutput == 3){
     
@@ -97,7 +101,7 @@ DB_Union <- function(
                         all.y = TRUE)}
   
   OutPut <- as.matrix(SetUnido)
-
+  return(OutPut)
 }  
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
