@@ -58,10 +58,10 @@ R4XCL_INT_PROCEDIMIENTOS <- function()
   
   Reg_Poisson <- 
     c(
-        "[1] Estimar Modelo de Regresi?n Poisson",
+        "[1] Estimar Modelo de Regresión Poisson",
         "[2] Estimar [Y] (dentro de muestra)",
         "[3] Estimar [Y] (fuera de muestra)",
-        "[4] Especificaci?n empleada",
+        "[4] Especificación empleada",
         "[5] Guardar Modelo Estimado en R"
      )
   
