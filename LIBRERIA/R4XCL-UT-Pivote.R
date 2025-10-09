@@ -24,7 +24,7 @@ DB_Union <- function(
 
   library(svDialogs)
   
-  list_Opcion <- c("[1] Inner join",
+  lista_Opciones <- c("[1] Inner join",
                    "[2] Outer join",
                    "[3] Cross join",
                    "[4] Left outer",
@@ -59,7 +59,7 @@ DB_Union <- function(
   
     if(TipoOutput == 0){
       
-      SetUnido = data.frame(Opciones = list_Opcion)
+      SetUnido = data.frame(Opciones = lista_Opciones)
   
   }else if(TipoOutput == 1){   
     
@@ -157,9 +157,17 @@ DB_Pivote <- function(
   
   especificacion=eval(parse(text=C))
   
+  lista_Opciones <- c("[1] Suma",
+                      "[2] media",
+                      "[3] mediana",
+                      "[4] conteo",
+                      "[5] sesgo",
+                      "[6] p-Jarque Bera",
+                      "[7] cuantil")
+  
   if (TipoOutput == 0){
     
-    OutPut <- "EN PROCESO"
+    OutPut <- data.frame(Opciones = lista_Opciones)
     
   } else if (TipoOutput == 1){  
     
@@ -247,7 +255,7 @@ DB_Pivote <- function(
                   )
     OutPut=a  
         
-  }else if(TipoOutput == 9){  
+  }else if(TipoOutput == 7){  
     
     Texto <- "Ingrese el valor porcentual umbral (Valor 0-100): "
     Prob  <- as.numeric(dlgInput(Texto, default =50)$res)/100
@@ -267,7 +275,7 @@ DB_Pivote <- function(
     
     OutPut= a
     
-  }else if(TipoOutput > 9){  
+  }else if(TipoOutput > 7){  
     
     OutPut <- "Revisar parámetros disponibles" 
     
