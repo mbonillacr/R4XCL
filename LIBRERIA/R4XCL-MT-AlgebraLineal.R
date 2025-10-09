@@ -8,15 +8,15 @@ MM_Algebra.C <- function(
   #-------------------------->>>
   # VALIDACIONES
   #-------------------------->>>
-  if (missing(SetDatosX)) {
-    stop("Error: SetDatosX es un parámetro obligatorio.")
-  }
-  if (!is.matrix(SetDatosX) || nrow(SetDatosX)!= ncol(SetDatosX)) {
-    stop("Error: SetDatosX debe ser una matriz cuadrada.")
-  }
-  if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 8) {
-    stop("Error: TipoOutput debe ser un número entre 0 y 8.")
-  }
+  # if (missing(SetDatosX)) {
+  #   stop("Error: SetDatosX es un parámetro obligatorio.")
+  # }
+  # if (!is.matrix(SetDatosX) || nrow(SetDatosX)!= ncol(SetDatosX)) {
+  #   stop("Error: SetDatosX debe ser una matriz cuadrada.")
+  # }
+  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 8) {
+  #   stop("Error: TipoOutput debe ser un número entre 0 y 8.")
+  # }
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
