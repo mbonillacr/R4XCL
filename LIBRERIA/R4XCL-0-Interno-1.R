@@ -204,7 +204,7 @@ R4XCL_INT_DATOS_NUMERO = function(
                                  SetDatosY = NULL, 
                                  Escala    = NULL,
                                  Filtro    = NULL,
-                                 Ponderadores = NULL
+                                 Ponderadores =NULL
                                  )
 {
   

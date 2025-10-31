@@ -24,11 +24,16 @@ DB_Union <- function(
 
   library(svDialogs)
   
-  list_Opcion <- c("[1] Inner join",
+  lista_Opciones <- c("[1] Inner join",
                    "[2] Outer join",
                    "[3] Cross join",
                    "[4] Left outer",
                    "[5] Right outer")
+  
+  if(TipoOutput == 0){ 
+    Opciones= data.frame(Opciones = lista_Opciones)
+    return(Opciones)
+  }
   
   pX          <- ncol(SetDatosX)
   pY          <- ncol(SetDatosY)
@@ -57,17 +62,15 @@ DB_Union <- function(
   SetDatosX[[Llaves_X]] <- as.character(unlist(SetDatosX[[Llaves_X]]))
   SetDatosY[[Llaves_Y]] <- as.character(unlist(SetDatosY[[Llaves_Y]]))
   
-    if(TipoOutput == 0){
-      
-      SetUnido = data.frame(Opciones = list_Opcion)
-  
-  }else if(TipoOutput == 1){   
-    
+
+  if(TipoOutput == 1){   
+    print("entra")
       SetUnido <- merge(
                         x    = SetDatosX,   y = SetDatosY, 
                         by.x = Llaves_X, by.y = Llaves_Y,
                         all  = FALSE)
-  
+      print(SetUnido)
+      
   }else if(TipoOutput == 2){
       print("entra")
     
@@ -75,6 +78,7 @@ DB_Union <- function(
                         x     = SetDatosX,   y = SetDatosY, 
                         by.x  = Llaves_X, by.y = Llaves_Y,
                         all   = TRUE)
+      print(SetUnido)
     
   }else if(TipoOutput == 3){
     
@@ -97,7 +101,7 @@ DB_Union <- function(
                         all.y = TRUE)}
   
   OutPut <- as.matrix(SetUnido)
-
+  return(OutPut)
 }  
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -157,9 +161,17 @@ DB_Pivote <- function(
   
   especificacion=eval(parse(text=C))
   
+  lista_Opciones <- c("[1] Suma",
+                      "[2] media",
+                      "[3] mediana",
+                      "[4] conteo",
+                      "[5] sesgo",
+                      "[6] p-Jarque Bera",
+                      "[7] cuantil")
+  
   if (TipoOutput == 0){
     
-    OutPut <- "EN PROCESO"
+    OutPut <- data.frame(Opciones = lista_Opciones)
     
   } else if (TipoOutput == 1){  
     
@@ -247,7 +259,7 @@ DB_Pivote <- function(
                   )
     OutPut=a  
         
-  }else if(TipoOutput == 9){  
+  }else if(TipoOutput == 7){  
     
     Texto <- "Ingrese el valor porcentual umbral (Valor 0-100): "
     Prob  <- as.numeric(dlgInput(Texto, default =50)$res)/100
@@ -267,7 +279,7 @@ DB_Pivote <- function(
     
     OutPut= a
     
-  }else if(TipoOutput > 9){  
+  }else if(TipoOutput > 7){  
     
     OutPut <- "Revisar parámetros disponibles" 
     

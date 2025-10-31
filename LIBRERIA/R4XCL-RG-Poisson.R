@@ -2,7 +2,6 @@ MR_Poisson.C <- function(
     SetDatosY, 
     SetDatosX,
     Categorica=0,
-    #Escala=0,
     Filtro=0,
     TipoOutput=0, 
     SetDatosPredecir=NULL,
@@ -10,35 +9,7 @@ MR_Poisson.C <- function(
 )
 {
   
-  #-------------------------->>>
-  # VALIDACIONES
-  #-------------------------->>>
-  # if (missing(SetDatosX)) {
-  #   stop("Error: SetDatosX es un parámetro obligatorio.")
-  # }
-  # if (missing(SetDatosY)) {
-  #   stop("Error: SetDatosY es un parámetro obligatorio.")
-  # }
-  # if (!is.data.frame(SetDatosX)) {
-  #   stop("Error: SetDatosX debe ser un data frame.")
-  # }
-  # if (!is.data.frame(SetDatosY)) {
-  #   stop("Error: SetDatosY debe ser un data frame.")
-  # }
-  # if (!is.numeric(Categorica) || Categorica < 0 || Categorica > 1) {
-  #   stop("Error: Categorica debe ser 0 o 1.")
-  # }
-  # if (!is.numeric(TipoOutput) || TipoOutput < 0 || TipoOutput > 7) {
-  #   stop("Error: TipoOutput debe ser un número entre 0 y 7.")
-  # }
-  # if (!is.null(SetDatosPredecir) &&!is.data.frame(SetDatosPredecir)) {
-  #   stop("Error: SetDatosPredecir debe ser un data frame.")
-  # }
-  # if (!is.numeric(Constante) || Constante < 0 || Constante > 1) {
-  #   stop("Error: Constante debe ser 0 o 1.")
-  # }
-  
-  # https://stats.idre.ucla.edu/r/dae/poisson-regression/
+ # https://stats.idre.ucla.edu/r/dae/poisson-regression/
   
   #-------------------------->>>
   # PREPARACION DE DATOS Y PARAMETROS
@@ -47,6 +18,7 @@ MR_Poisson.C <- function(
   library(ResourceSelection)
   library(sandwich)
   library(margins)
+  library(stargazer)
   
   FX <- R4XCL_INT_FUNCION(SetDatosX,SetDatosY)
   especificacion <- eval(parse(text=FX))
