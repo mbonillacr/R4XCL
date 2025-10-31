@@ -169,8 +169,9 @@ AD_ACP.C <- function(
     } 
     
   }else if(TipoOutput == 12){    
-    
+    BERT.graphics.device(cell = T)
     biplot(res.pca, scale = 0)
+    dev.off()
     OutPut <- "Biplot Ejecutado"
     
   }else if(TipoOutput >12){   
