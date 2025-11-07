@@ -9,4 +9,4 @@ CONFERENCE: LACSC 2025
 LOCATION: Universidad de Valparaíso
 COUNTRY: Chile
 DATE: November 7, 2025
-TIME: XX:XX  PM
+TIME: 02:XX  PM
