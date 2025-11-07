@@ -1,3 +1,7 @@
 Hello World from LACSC 2025
+
+CONFERENCE: LACSC 2025
+LOCATION: Universidad de Valparaiso
+COUNTRY: Chile
 DATE: November 7, 2025
 TIME: XX:XX  PM
