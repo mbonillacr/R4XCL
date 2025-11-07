@@ -61,7 +61,10 @@ AD_ACP.C <- function(
     
   }else if(TipoOutput == 3){   
     
+    BERT.graphics.device(cell = T)
     chart.Correlation(DT, histogram=TRUE)
+    dev.off()
+    
     OutPut =  "Grafico de Correlaciones Ejecutado"
     
   }else if(TipoOutput == 4){
